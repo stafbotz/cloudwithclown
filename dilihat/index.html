@@ -488,26 +488,6 @@
               </div>
             </div>
            
-<!-- Hans Bot -->
-	
-<div class="col-xl-3 col-md-6 mb-4">
-  <div class="card h-100">
-  <div class="card-body">
-  <div class="row align-items-center">
-  <div class="col mr-2">
-  <div class="text-xs font-weight-bold text-uppercase mb-1">Info</div>
-  <div class="h5 mb-0 font-weight-bold text-gray-800">Hari Kemerdekaan</div>
-  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 
-  <b id="time">0Hari  0Jam 0Menit 0Detik </b><br></span>
-  <div class="mt-2 mb-0 text-muted text-xs">
-  </div>
-  </div>
-  <div class="col-auto">
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
 
 <div class="col-xl-3 col-md-6 mb-4">
 <div class="card h-100">
@@ -630,32 +610,6 @@
   }
   </script>
 <script>
-				// Akhir Hitungan Mundur
-				var countDownDate = new Date("Aug 16, 2022 00:00:00").getTime();
-
-				// Update Hitungan Mundur Setiap 1 Detik
-				var x = setInterval(function() {
-
-					// Mengambil Tanggal Dan Waktu
-					var now = new Date().getTime();
-
-					// Find the distance between now and the count down date
-					var distance = countDownDate - now;
-
-					// Kalkulator Waktu Hari, Jam, Menit, Detik 
-					var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-					var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-					var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-					var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-					// Menampilkan Hasil Di Dalam element Menggunakan id="time"
-					document.getElementById("time").innerHTML = days + "Hari  " + hours + "Jam " + minutes + "Menit " + seconds + "Detik ";
-
-					// Ketika countdown timer sudah berakhir Maka Tulisan Berakhir
-					if (distance < 0) {
-						clearInterval(x);
-						document.getElementById("time").innerHTML = "Berakhir";
-					}
-				}, 1000);
+			
 			</script>
 </html>
