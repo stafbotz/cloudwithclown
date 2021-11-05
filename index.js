@@ -36,11 +36,41 @@ async function starts() {
 	})
 	await client.connect({timeoutMs: 30 * 1000})
         fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
+       
+      client.on('chat-update', async (mek) => {
+            try {
+                 if (!mek.hasNewMessage) return
+                 mek = mek.messages.all()[0]
+                 if (!mek.message) return
+		 if (mek.key.fromMe) return 
+                 mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
+		 const content = JSON.stringify(mek.message)
+		 const from = mek.key.remoteJid
+		 const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
+		 body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
+		 budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
+	         const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
+                 const botNumber = client.user.jid
+                 const isGroup = from.endsWith('@g.us')
+                 const sender = isGroup ? mek.participant : mek.key.remoteJid
+		 pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
+            
         
-        client.sendMessage('6283170659182@s.whatsapp.net', 'Hai', MessageType.text)
+                 switch(command) {
+                    case 'request':
+                       client.sendMessage(from, 'Progress 23%', text)
+                    break
+                 }
+
+
+            } catch (e) {
+                 console.log('Error : %s', color(e, 'red') 
+        }
+    })
 }
 
 starts()
+
 
 
 
