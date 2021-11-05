@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 8080 || 5000 || 3000
 var { color } = require('./lib/color.js');
 const { Client } = require('whatsapp-web.js');
 const fs = require('fs-extra');
-let sessionwhatsapp = require('./session.json')
 
 var mainrouter = require('./routes/main'),
     apirouter = require('./routes/api')
@@ -24,7 +23,7 @@ app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT,'green'))
 })
 
-const client = new Client({ puppeteer: { headless: false }, session: sessionCfg });
+const client = new Client();
 
 
 module.exports = app
