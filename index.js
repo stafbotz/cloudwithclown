@@ -23,7 +23,7 @@ app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT,'green'))
 })
 
-async function starts() {
+function starts() {
 	const client = new WAConnection()
 	client.logger.level = 'warn'
 	
