@@ -23,6 +23,7 @@
     "url": "https://github.com/zeeoneofc/api-zeeoneofc/issues"
   },
   "dependencies": {
+    "@adiwajshing/baileys": "github:adiwajshing/baileys",
     "fs-extra": "^10.0.0",
     "axios": "^0.21.1",
     "base-64": "^1.0.0",
