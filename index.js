@@ -64,7 +64,7 @@ async function starts() {
 
 
             } catch (e) {
-                 console.log('Error : %s', color(e, 'red') 
+                 console.log(color(e, 'red') 
         }
     })
 }
