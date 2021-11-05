@@ -44,15 +44,15 @@ async function starts() {
     
     client.on('qr', qr => {
        qrcode.generate(qr, {small: true})
-       console.log(color("Scan Qr", 'green')
+       console.log(color("Scan Qr", 'green'))
     })
 
     fs.existsSync('./session.json') && client.loadAuthInfo ('./session.json')
     client.on('connecting', () => {
-       console.log(color("Connecting", 'green')
+       console.log(color("Connecting", 'green'))
     })
     client.on('open', () => {
-       console.log(color("Connected", 'green')
+       console.log(color("Connected", 'green'))
     })
     await client.connect({timeoutMs: 30 * 1000})
     fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
