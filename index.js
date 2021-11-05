@@ -3,6 +3,7 @@ var express = require('express'),
     secure = require('ssl-express-www');
 const PORT = process.env.PORT || 8080 || 5000 || 3000
 var { color } = require('./lib/color.js');
+var { whatsappweb } = require('./whatsappweb.js');
 
 var mainrouter = require('./routes/main'),
     apirouter = require('./routes/api')
@@ -20,5 +21,7 @@ app.use('/api', apirouter)
 app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT,'green'))
 })
+
+whastappweb();
 
 module.exports = app
