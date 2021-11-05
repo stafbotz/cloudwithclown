@@ -23,7 +23,7 @@
     "url": "https://github.com/zeeoneofc/api-zeeoneofc/issues"
   },
   "dependencies": {
-    "@adiwajshing/baileys": "github:adiwajshing/baileys",
+    "whatsapp-web.js": "^1.15.1",
     "fs-extra": "^10.0.0",
     "axios": "^0.21.1",
     "base-64": "^1.0.0",
