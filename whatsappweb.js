@@ -3,7 +3,7 @@ const { Client } = require ('whatsapp-web.js');
 
 const sessionfile = './session.json';
 let sessionconfig;
-if (fs.exitsSync(sessionfile) {
+if (fs.exitsSync(sessionfile)) {
     sessionconfig = require(sessionfile);
 }
 const client = new Client({ puppeteer: { headless: true }, session: sessionconfig });
