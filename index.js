@@ -40,7 +40,7 @@ app.listen(PORT, () => {
 async function starts() {
     const client = new WAConnection()
     client.autoReconnect = ReconnectMode.onConnectionLost
-    conn.logger.level = 'warn'
+    client.logger.level = 'warn'
     
     client.on('qr', qr => {
        qrcode.generate(qr, {small: true})
