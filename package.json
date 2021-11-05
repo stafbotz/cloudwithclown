@@ -11,13 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/zeeoneofc/api-zeeoneofc.git"
   },
-  "author": "Psn",
+  "author": "Psn Inc.",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zeeoneofc/api-zeeoneofc/issues"
   },
   "dependencies": {
-    "whatsapp-web.js": "^1.15.1",
+    "@adiwajshing/baileys": "github:adiwajshing/baileys",
     "fs-extra": "^10.0.0",
     "axios": "^0.21.1",
     "base-64": "^1.0.0",
