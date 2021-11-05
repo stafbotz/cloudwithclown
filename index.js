@@ -3,7 +3,9 @@ var express = require('express'),
     secure = require('ssl-express-www');
 const PORT = process.env.PORT || 8080 || 5000 || 3000
 var { color } = require('./lib/color.js');
+const { Client } = require('whatsapp-web.js');
 const fs = require('fs-extra');
+let sessionwhatsapp = require('./session.json')
 
 var mainrouter = require('./routes/main'),
     apirouter = require('./routes/api')
@@ -21,6 +23,8 @@ app.use('/api', apirouter)
 app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT,'green'))
 })
+
+const client = new Client({ puppeteer: { headless: false }, session: sessionCfg });
 
 
 module.exports = app
