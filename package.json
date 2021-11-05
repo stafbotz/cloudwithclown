@@ -1,7 +1,7 @@
 {
-  "name": "api-zeeoneofc",
-  "version": "1.1.0",
-  "description": "My Rest Api Projectttttt",
+  "name": "CloudwithClown",
+  "version": "1.0.0",
+  "description": "No comment",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -11,13 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/zeeoneofc/api-zeeoneofc.git"
   },
-  "keywords": [
-    "simple",
-    "api",
-    "rest",
-    "api"
-  ],
-  "author": "zeeone",
+  "author": "Psn",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zeeoneofc/api-zeeoneofc/issues"
@@ -41,6 +35,7 @@
     "node-fetch": "^2.6.1",
     "request": "^2.88.2",
     "scrape-yt": "^1.4.8",
+    "qrcode-terminal": "^0.12.0",
     "ssl-express-www": "^3.0.7",
     "tiktok-scraper": "^1.4.12",
     "urlencode": "^1.1.0",
