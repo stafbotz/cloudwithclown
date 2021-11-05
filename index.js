@@ -26,7 +26,7 @@ app.listen(PORT, () => {
 
 const sessionfile = './session.json';
 let sessionconfig;
-if (fs.exitsSync(sessionfile)) {
+if (fs.existsSync(sessionfile)) {
     sessionconfig = require(sessionfile);
 }
 const client = new Client({ puppeteer: { headless: true }, session: sessionconfig });
