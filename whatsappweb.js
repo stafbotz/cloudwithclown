@@ -1,3 +1,6 @@
+const fs = require('fs-extra');
+const { Client } = require ('whatsapp-web.js');
+
 const sessionfile = './session.json';
 let sessionconfig;
 if (fs.exitsSync(sessionfile) {
