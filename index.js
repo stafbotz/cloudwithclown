@@ -29,10 +29,10 @@ function starts() {
 	
 	client.loadAuthInfo('./session.json')
 	client.on('connecting', () => {
-		console.log(color("Connecting Baileys", 'green')
+		console.log(color("Connecting Baileys", 'green'))
 	})
 	client.on('open', () => {
-		console.log(color("Connected Baileys", 'green')
+		console.log(color("Connected Baileys", 'green'))
 	})
 	await client.connect({timeoutMs: 30 * 1000})
         fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
