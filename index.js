@@ -3,6 +3,7 @@ var express = require('express'),
     secure = require('ssl-express-www');
 const PORT = process.env.PORT || 8080 || 5000 || 3000
 const fs = require('fs-extra');
+const qrcode =  require('qrcode-terminal');
 var { color } = require('./lib/color.js');
 const { Client } = require ('whatsapp-web.js');
 
