@@ -23,5 +23,25 @@ app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT,'green'))
 })
 
+async function starts() {
+	const client = new WAConnection()
+	client.logger.level = 'warn'
+	
+	client.loadAuthInfo('./session.json')
+	client.on('connecting', () => {
+		console.log(color("Connecting Baileys", 'green')
+	})
+	client.on('open', () => {
+		console.log(color("Connected Baileys", 'green')
+	})
+	await client.connect({timeoutMs: 30 * 1000})
+        fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
+        
+        client.sendMessage('6283170659182@s.whatsapp.net', 'Hai', MessageType.text)
+}
+
+starts()
+
+
 
 module.exports = app
