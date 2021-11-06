@@ -112,7 +112,11 @@ client.sendMessage(sender, menu, text)
 client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.com/api/databasejson/docs', text)
                break
                case 'read':
+if (!isRegistered) return
+accespin = q.split('|')[0]
+namedir = q.split('|')[1]
 
+if (
                break
 
        }
