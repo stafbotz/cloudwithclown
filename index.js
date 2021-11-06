@@ -144,9 +144,9 @@ accespin = q.split('|')[0]
 namedir = q.split('|')[1]
 
 
-const resultdir = './dir/' + namedir
-const splitdir = namedir.split('/')[0]
-const pinaccesdir = fs.readFileSync('./dir/' + splitdir + '/pinacces')
+resultdir = './dir/' + namedir
+splitdir = namedir.split('/')[0]
+pinaccesdir = fs.readFileSync('./dir/' + splitdir + '/pinacces')
 
 console.log(pinaccesdir)
 if (!fs.existsSync(resultdir)) return
