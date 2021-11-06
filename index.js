@@ -1,7 +1,3 @@
-var express = require('express'),
-    cors = require('cors'),
-    secure = require('ssl-express-www');
-
 const { 
     WAConnection,
     MessageType,
@@ -15,6 +11,9 @@ const {
     waChatKey
 } = require ('@adiwajshing/baileys');
 var { color } = require('./lib/color.js');
+var express = require('express'),
+    cors = require('cors'),
+    secure = require('ssl-express-www');
 const PORT = process.env.PORT || 8080 || 5000 || 3000
 const fs = require('fs-extra');
 const qrcode =  require('qrcode-terminal');
@@ -82,10 +81,31 @@ async function starts() {
       
 
             switch(command) {
-               case 'test':
-client.sendMessage(from, 'Aktif', text)
+               case 'menu':
+
+menu = `command : !createaccount <username>|<namedatabasedir>
+        info : create cloudwithclown account
+        example : !createaccount dummy|ayonima
+
+        command : !viewdirdatabase
+        info : view the contents of the database directory
+        example : !viewdirdatabase
+       
+        command : !write <accespin>|<namedatabasedir>|<input>
+        info : edit file contents
+        example : !write bbcd|ayonima/antilink.json|["0-1624898689@g.us"]
+ 
+        command : !read <accespin>|<namedatabasedir>
+        info : view file contents
+        example : !read bbcd|ayonima/antilink.json
+        
+        command : !docs
+        info : get information and help
+        example : !docs`
+
+client.sendMessage(from, menu, text)
                break
-            }
+       }
 
      } catch (e) {
        console.log('Error : %s', color(e, 'red'))
