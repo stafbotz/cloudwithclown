@@ -112,54 +112,24 @@ async function starts() {
 	    
             switch(command) {
                case 'menu':
-
-menu = `command : !createaccount
-info : membuat akun
-example : !createaccount
-
-command : !createdir
-info : membuat direktori baru
-example : !createdir ayonima
-
-command : !viewdir
-info : melihat isi direktori
-example : !viewdir ayonima
-
-command : !write
-info : edit atau buat file baru
-example : !write ayonima/alok.txt|test
- 
-command : !read
-info : melihat isi file
-example : !read ayonima/alok.txt
-        
-command : !docs
-info : informasi dan bantuan
-example : !docs`
-
-
-client.sendMessage(from, menu, text)
+client.sendMessage(from, 'command : !createaccount\ninfo : membuat akun\nexample : !createaccount\n\ncommand : !createdir\ninfo : membuat direktori baru\nexample : !createdir test\n\ncommand : !viewdir\ninfo : melihat isi direktori\nexample : !viewdir test\n\ncommand : !read\ninfo : melihat isi file\nexample : !read example.txt\n\ncommand : !docs\ninfo : informasi tentang penggunaan dan fitur lainnya\nexample : !docs', text)
                break
                case 'createaccount':
 if (isRegistered) return reply('you already registered')
 accespin = crypto.randomBytes(5)
-_iptcod = [{ pinacces: accespin }]
-fs.writeFileSync('./database/account/' + numsend + '_user.json', JSON.stringify(_iptcod))
-reply(_iptcod)
+_iptcod = [{pinacces:accespin}]
+await fs.writeFileSync('./database/account/' + numsend + '_user.json', JSON.stringify(_iptcod))
+client.sendMessage(sender, 'Pin acces kamu : ' + accespin, text)
                break
-               case 'docs':
-client.sendMessage(sender, 'Docs: https://cloudwithclown.herokuapp.com/api/databasejson/docs', text)
+               case 'docs': 
+reply('Docs: https://cloudwithclown.herokuapp.com/api/databasejson/docs')
                break
                case 'read':
 if (!isRegistered) return
 
-
-splitdiro = q.split('/')[0]
-splitdirt = q.split('/')[1]
-resultdir = './dir/' + splitdiro + '/path/' + splitdirt
-accespin = fs.readFileSync('./dir/' + splitdiro + '/pinacces.json', 'utf8')[0].pinacces
+datadir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].dir
 authdir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].pinacces
-
+resultdir = './dir/' + datadir + '/path/' + splitdirt
 
 if (!fs.existsSync(resultdir)) return
 if (accespin !== authdir) return reply('acces denied')
