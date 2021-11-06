@@ -2807,7 +2807,7 @@ router.get('/sendmessage/whatsapp', async (req, res, next) => {
             value = req.query.text;
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'Alphabot') return res.json(loghandler.invalidKey)
-        if (!to || !text) return res.json({ status : false, message : "masukan parameter to/text"})
+        if (!to || !value) return res.json({ status : false, message : "masukan parameter to/text"})
         var bugpreventionnum = to.search('@s.whatsapp.net');
         if (bugpreventionnum === 8) return res.json({ status : false, message : "mohon masukkan nomor yang benar"})
         rst = to + '@s.whatsapp.net'
