@@ -119,7 +119,7 @@ namedir = q.split('|')[1]
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
 rsplitdir = './dir/' + splitdir
-pinaccesdir = fs.readFileSync(rsplitdir + accespin.txt)
+pinaccesdir = fs.readFileSync(rsplitdir + 'accespin.txt')
 
 if (!fs.existsSync(resultdir)) return
   if (accespin === pinaccesdir) {
