@@ -84,24 +84,25 @@ async function starts() {
                case 'menu':
 
 menu = `command : !createaccount <username>|<namedatabasedir>
-        info : create cloudwithclown account
-        example : !createaccount dummy|ayonima
+info : create cloudwithclown account
+example : !createaccount dummy|ayonima
 
-        command : !viewdirdatabase
-        info : view the contents of the database directory
-        example : !viewdirdatabase
+command : !viewdirdatabase
+info : view the contents of the database directory
+example : !viewdirdatabase
        
-        command : !write <accespin>|<namedatabasedir>|<input>
-        info : edit file contents
-        example : !write bbcd|ayonima/antilink.json|["0-1624898689@g.us"]
+command : !write <accespin>|<namedatabasedir>|<input>
+info : edit file contents
+example : !write bbcd|ayonima/antilink.json|["0-1624898689@g.us"]
  
-        command : !read <accespin>|<namedatabasedir>
-        info : view file contents
-        example : !read bbcd|ayonima/antilink.json
+command : !read <accespin>|<namedatabasedir>
+info : view file contents
+example : !read bbcd|ayonima/antilink.json
         
-        command : !docs
-        info : get information and help
-        example : !docs`
+command : !docs
+info : get information and help
+example : !docs`
+
 
 client.sendMessage(from, menu, text)
                break
