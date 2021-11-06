@@ -18,7 +18,7 @@ const crypto = require('crypto')
 const fs = require('fs-extra');
 const qrcode =  require('qrcode-terminal');
 var express = require('express');
-async function starts() {
+// async function starts() {
     const client = new WAConnection()
     client.autoReconnect = ReconnectMode.onConnectionLost
     client.logger.level = 'warn'
@@ -98,9 +98,9 @@ async function starts() {
           console.log('Error : %s', color(e, 'red'))
      }
   })
-}
+// }
 
-starts().catch (err => console.log("unexpected error: " + err))
+// starts().catch (err => console.log("unexpected error: " + err))
 var creator = '@zeeone';
 var ytdl = require('ytdl-core');
 var ytpl = require('ytpl');
