@@ -13,7 +13,7 @@ const
     ProxyAgent,
     waChatKey
   } = require ('@adiwajshing/baileys');
-var { color } = require(__path + './lib/color.js');
+var { color } = require(__path + '/lib/color.js');
 const crypto = require('crypto')
 const fs = require('fs-extra');
 const qrcode =  require('qrcode-terminal');
