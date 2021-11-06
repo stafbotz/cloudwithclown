@@ -146,7 +146,7 @@ namedir = q.split('|')[1]
 
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
-pinaccesdir = fs.open('./dir/' + splitdir + '/pinacces', 'r')
+pinaccesdir = await fs.open('./dir/' + splitdir + '/pinacces', 'r')
 
 console.log(pinaccesdir)
 if (!fs.existsSync(resultdir)) return
