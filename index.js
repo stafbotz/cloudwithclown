@@ -77,6 +77,8 @@ async function starts() {
             const isGroup = from.endsWith('@g.us')
 	    const sender = isGroup ? mek.participant : mek.key.remoteJid
 	    const totalchat = await client.chats.all()
+            const numsend = sender.split('@')[0]
+            const isRegistered = fs.existsSync(numsend + '_user.json')
 	    pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
       
 
@@ -108,6 +110,9 @@ client.sendMessage(sender, menu, text)
                break
                case 'docs':
 client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.com/api/databasejson/docs', text)
+               break
+               case 'read':
+
                break
 
        }
