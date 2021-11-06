@@ -83,7 +83,7 @@ async function starts() {
             switch(command) {
                case 'menu':
 
-menu = `command : !createaccount <username>|<namedatabasedir>
+menu = `command : !createaccount <username>|<createdir>
 info : create cloudwithclown account
 example : !createaccount dummy|ayonima
 
@@ -91,11 +91,11 @@ command : !viewdirdatabase
 info : view the contents of the database directory
 example : !viewdirdatabase
        
-command : !write <accespin>|<namedatabasedir>|<input>
+command : !write <accespin>|<namedir>|<input>
 info : edit file contents
-example : !write bbcd|ayonima/antilink.json|["0-1624898689@g.us"]
+example : !write bbcd|ayonima/antilink.json|test
  
-command : !read <accespin>|<namedatabasedir>
+command : !read <accespin>|<namedir>
 info : view file contents
 example : !read bbcd|ayonima/antilink.json
         
