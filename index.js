@@ -60,7 +60,4 @@ async function starts() {
 
 starts().catch (err => console.log("unexpected error: " + err))
    
-
-
-
 module.exports = app
