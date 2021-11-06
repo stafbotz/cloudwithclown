@@ -14,6 +14,7 @@ var { color } = require('./lib/color.js');
 var express = require('express'),
     cors = require('cors'),
     secure = require('ssl-express-www');
+const crypto = require('crypto')
 const PORT = process.env.PORT || 8080 || 5000 || 3000
 const fs = require('fs-extra');
 const qrcode =  require('qrcode-terminal');
@@ -141,7 +142,10 @@ client.sendMessage(from, menu, text)
                break
                case 'createaccount':
 if (isRegistered) return reply('you already registered')
-
+accespin = crypto.randomBytes(5)
+_iptcod = [{ pinacces: accespin }]
+fs.writeFileSync('./database/account/' + numsend + '_user.json', JSON.stringify(_iptcod))
+reply(_iptcod)
                break
                case 'docs':
 client.sendMessage(sender, 'Docs: https://cloudwithclown.herokuapp.com/api/databasejson/docs', text)
