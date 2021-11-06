@@ -111,32 +111,7 @@ async function starts() {
 	    pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined	
 	    
             switch(command) {
-               case 'menu':
-client.sendMessage(from, 'command : !createaccount\ninfo : membuat akun\nexample : !createaccount\n\ncommand : !createdir\ninfo : membuat direktori baru\nexample : !createdir test\n\ncommand : !viewdir\ninfo : melihat isi direktori\nexample : !viewdir test\n\ncommand : !read\ninfo : melihat isi file\nexample : !read example.txt\n\ncommand : !docs\ninfo : informasi tentang penggunaan dan fitur lainnya\nexample : !docs', text)
-               break
-               case 'createaccount':
-if (isRegistered) return reply('you already registered')
-accespin = crypto.randomBytes(5)
-_iptcod = [{pinacces:accespin}]
-await fs.writeFileSync('./database/account/' + numsend + '_user.json', JSON.stringify(_iptcod))
-client.sendMessage(sender, 'Pin acces kamu : ' + accespin, text)
-               break
-               case 'docs': 
-reply('Docs: https://cloudwithclown.herokuapp.com/api/databasejson/docs')
-               break
-               case 'read':
-if (!isRegistered) return
-
-datadir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].dir
-authdir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].pinacces
-resultdir = './dir/' + datadir + '/path/' + splitdirt
-
-if (!fs.existsSync(resultdir)) return
-if (accespin !== authdir) return reply('acces denied')
-    sendres = fs.readFileSync(resultdir, 'utf8')
-    console.log(sendres)
-    client.sendMessage(from, sendres, text)
-               break
+       
             }
          } catch (e) {
           console.log('Error : %s', color(e, 'red'))
