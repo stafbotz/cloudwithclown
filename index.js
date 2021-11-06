@@ -143,17 +143,18 @@ if (!isRegistered) return
 accespin = q.split('|')[0]
 namedir = q.split('|')[1]
 
-console.log(accespin)
+
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
 pinaccesdir = await fs.readFileSync('./dir/' + splitdir + '/pinacces', 'utf8')
 
 
 if (!fs.existsSync(resultdir)) return
-  if (accespin !== pinaccesdir) return
+  if (accespin == pinaccesdir) {
     sendres = fs.readFileSync(resultdir, 'utf8')
     console.log(sendres)
     client.sendMessage(from, sendres, text)
+}
                break
             }
          } catch (e) {
