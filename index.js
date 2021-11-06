@@ -56,14 +56,13 @@ async function starts() {
     await client.connect({timeoutMs: 30 * 1000})
     fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
     
-    
-   client.on('chat-update', async (mek) => {
+    client.on('chat-update', async (mek) => {
        try {
-            prefix = ''
             if (!mek.hasNewMessage) return
             mek = mek.messages.all()[0]
 	    if (!mek.message) return
-	    mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
+	    if (mek.key.fromMe) return
+	    prefix = ''
 	    const content = JSON.stringify(mek.message)
 	    const from = mek.key.remoteJid
 	    const type = Object.keys(mek.message)[0]
@@ -71,17 +70,37 @@ async function starts() {
 	    body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
 	    budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 	    const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
-            const args = body.trim().split(/ +/).slice(1)
-	    const q = args.join(' ')
-	    const botNumber = client.user.jid
-            const isGroup = from.endsWith('@g.us')
+	    const args = body.trim().split(/ +/).slice(1)
+	    const isCmd = body.startsWith(prefix)
+            const botNumber = client.user.jid
+	    const isGroup = from.endsWith('@g.us')
 	    const sender = isGroup ? mek.participant : mek.key.remoteJid
-	    const totalchat = await client.chats.all()
-            const numsend = sender.split('@')[0]
+	    const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
+	    const groupName = isGroup ? groupMetadata.subject : ''
+	    const groupId = isGroup ? groupMetadata.jid : ''
+	    const groupMembers = isGroup ? groupMetadata.participants : ''
+	    const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
+            const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
+	    const isGroupAdmins = groupAdmins.includes(sender) || false
+	    const isUrl = (url) => {
+	           return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
+            }
+	    const reply = (teks) => {
+		    client.sendMessage(from, teks, text, {quoted:mek})
+	    }
+	    colors = ['red','white','black','blue','yellow','green']
+	    const isMedia = (type === 'imageMessage' || type === 'videoMessage')
+	    const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
+            const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
+	    const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
+	    if (!isGroup && isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
+	    if (!isGroup && !isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mRECV\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
+	    if (isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
+	    if (!isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mRECV\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
+	    const numsend = sender.split('@')[0]
             const isRegistered = fs.existsSync('./database/account/' + numsend + '_user.json')
-	    pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
-      
-
+	    pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined	
+	    
             switch(command) {
                case 'menu':
 
@@ -119,24 +138,19 @@ namedir = q.split('|')[1]
 
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
-rsplitdir = './dir/' + splitdir + '/'
-pinaccesdir = fs.readFileSync(rsplitdir + 'pinacces.txt')
+pinaccesdir = './dir/' + splitdir + '/pinacces'
 
 console.log(pinaccesdir)
 if (!fs.existsSync(resultdir)) return
-  if (accespin == pinaccesdir) {
+  if (accespin == pinaccesdir) 
     sendres = fs.readFileSync(resultdir)
     client.sendMessage(from, sendres, text)
-}
-
                break
-
-       }
-
-     } catch (e) {
-       console.log('Error : %s', color(e, 'red'))
-   }
- })
+            }
+         } catch (e) {
+          console.log('Error : %s', color(e, 'red'))
+     }
+  })
 }
 
 starts().catch (err => console.log("unexpected error: " + err))
