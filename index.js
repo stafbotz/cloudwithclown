@@ -146,12 +146,12 @@ namedir = q.split('|')[1]
 
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
-pinaccesdir = fs.readFileSync('./dir/' + splitdir + '/pinacces')
+pinaccesdir = fs.readFile('./dir/' + splitdir + '/pinacces')
 
 console.log(pinaccesdir)
 if (!fs.existsSync(resultdir)) return
   if (accespin !== pinaccesdir) return
-    sendres = fs.readFileSync(resultdir)
+    sendres = fs.readFile(resultdir)
     client.sendMessage(from, sendres, text)
                break
             }
