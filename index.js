@@ -71,6 +71,7 @@ async function starts() {
 	    budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 	    const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
 	    const args = body.trim().split(/ +/).slice(1)
+            const q = args.join(' ')
 	    const isCmd = body.startsWith(prefix)
             const botNumber = client.user.jid
 	    const isGroup = from.endsWith('@g.us')
