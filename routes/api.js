@@ -2811,7 +2811,7 @@ router.get('/sendmessage/whatsapp', async (req, res, next) => {
         var bugpreventionnum = to.search('@s.whatsapp.net');
         if (bugpreventionnum === 8) return res.json({ status : false, message : "mohon masukkan nomor yang benar"})
         rst = to + '@s.whatsapp.net'
-        if (rst == botNumber) return
+        if (rst == '62882016283596@s.whatsapp.net') return
         client.sendMessage(rst, value, MessageType.text)
         res.json({
         status: true,
