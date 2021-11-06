@@ -140,17 +140,15 @@ client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.
                break
                case 'read':
 if (!isRegistered) return
-accespin = q.split('|')[0]
-namedir = q.split('|')[1]
 
 
-resultdir = './dir/' + namedir
-splitdir = namedir.split('/')[0]
-pinaccesdir = await fs.readFileSync('./dir/' + splitdir + '/pinacces', 'utf8')
-client.sendMessage(from, pinaccesdir + '|' + accespin, text)
+resultdir = './dir/' + q
+splitdir = q.split('/')[0]
+authdir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].accespin
 
-if (!fs.existsSync(resultdir)) return reply('file' + namedir + 'tidak ditemukan')
-if (accespin !== pinaccesdir) return reply('acces denied')
+
+if (!fs.existsSync(resultdir)) return reply('file' + q + 'tidak ditemukan')
+if (accespin !== authdir) return reply('acces denied')
     sendres = fs.readFileSync(resultdir, 'utf8')
     console.log(sendres)
     client.sendMessage(from, sendres, text)
