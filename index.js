@@ -150,11 +150,10 @@ pinaccesdir = await fs.readFileSync('./dir/' + splitdir + '/pinacces', 'utf8')
 
 
 if (!fs.existsSync(resultdir)) return reply('file' + namedir + 'tidak ditemukan')
-  if (accespin == pinaccesdir) {
+if (accespin !== pinaccesdir) return reply('acces denied')
     sendres = fs.readFileSync(resultdir, 'utf8')
     console.log(sendres)
     client.sendMessage(from, sendres, text)
-}
                break
             }
          } catch (e) {
