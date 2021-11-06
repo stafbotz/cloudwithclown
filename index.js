@@ -106,7 +106,7 @@ info : get information and help
 example : !docs`
 
 
-client.sendMessage(sender, menu, text)
+client.sendMessage(from, menu, text)
                break
                case 'docs':
 client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.com/api/databasejson/docs', text)
@@ -116,17 +116,17 @@ if (!isRegistered) return
 accespin = q.split('|')[0]
 namedir = q.split('|')[1]
 
-client.sendMessage(sender, accespin + ' batas ' + namedir, text)
+client.sendMessage(from, accespin + ' batas ' + namedir, text)
 
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
-rsplitdir = './dir/' + splitdir
+rsplitdir = './dir/' + splitdir + '/'
 pinaccesdir = fs.readFileSync(rsplitdir + 'accespin.txt')
 
 if (!fs.existsSync(resultdir)) return
   if (accespin == pinaccesdir) {
     sendres = fs.readFileSync(resultdir)
-    client.sendMessage(sender, sendres, text)
+    client.sendMessage(from, sendres, text)
 }
 
                break
