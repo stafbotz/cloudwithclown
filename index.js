@@ -78,6 +78,13 @@ async function starts() {
 	    const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
 	    const groupName = isGroup ? groupMetadata.subject : ''
 	    const groupId = isGroup ? groupMetadata.jid : ''
+            const getGroupAdmins = (participants) => {
+	           admins = []
+	           for (let i of participants) {
+		       i.isAdmin ? admins.push(i.jid) : ''
+	           }
+	     return admins
+            }
 	    const groupMembers = isGroup ? groupMetadata.participants : ''
 	    const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
             const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
