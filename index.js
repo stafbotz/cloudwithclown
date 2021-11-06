@@ -112,32 +112,36 @@ async function starts() {
             switch(command) {
                case 'menu':
 
-menu = `command : !createaccount <createdir>
-info : create account
-example : !createaccount ayonima
+menu = `command : !createaccount
+info : membuat akun
+example : !createaccount
 
-command : !viewdir <namedir>
-info : view the contents of the database directory
+command : !createdir
+info : membuat direktori baru
+example : !createdir ayonima
+
+command : !viewdir
+info : melihat isi direktori
 example : !viewdir ayonima
 
-command : !createnewfile <namedir>|<namefile>|<input>
-info : create new file
-example : !createnewfile ayonima|alok.txt|dm gratis
-       
-command : !write <namedir>|<input>
-info : edit file contents
+command : !write
+info : edit atau buat file baru
 example : !write ayonima/alok.txt|test
  
-command : !read <namedir>
-info : view file contents
-example : !read ayonima/antilink.json
+command : !read
+info : melihat isi file
+example : !read ayonima/alok.txt
         
 command : !docs
-info : get information and help
+info : informasi dan bantuan
 example : !docs`
 
 
 client.sendMessage(from, menu, text)
+               break
+               case 'createaccount':
+if (isRegistered) return reply('you already registered')
+
                break
                case 'docs':
 client.sendMessage(sender, 'Docs: https://cloudwithclown.herokuapp.com/api/databasejson/docs', text)
