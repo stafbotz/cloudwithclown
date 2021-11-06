@@ -84,7 +84,7 @@ async function starts() {
                case 'menu':
 
 menu = `command : !createaccount <username>|<createdir>
-info : create cloudwithclown account
+info : create account
 example : !createaccount dummy|ayonima
 
 command : !viewdirdatabase
@@ -104,8 +104,12 @@ info : get information and help
 example : !docs`
 
 
-client.sendMessage(from, menu, text)
+client.sendMessage(sender, menu, text)
                break
+               case 'docs':
+client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.com/api/databaseapi
+               break
+
        }
 
      } catch (e) {
