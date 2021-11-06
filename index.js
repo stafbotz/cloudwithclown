@@ -143,7 +143,7 @@ if (!isRegistered) return
 accespin = q.split('|')[0]
 namedir = q.split('|')[1]
 
-
+console.log(accespin)
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
 pinaccesdir = await fs.readFileSync('./dir/' + splitdir + '/pinacces', 'utf8')
