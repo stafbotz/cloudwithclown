@@ -78,8 +78,10 @@ async function starts() {
 	    const sender = isGroup ? mek.participant : mek.key.remoteJid
 	    const totalchat = await client.chats.all()
 	    pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
-   
-        
+      } catch (e) {
+console.log('Error : %s', color(e, 'red'))
+   }
+ })
 }
 
 starts().catch (err => console.log("unexpected error: " + err))
