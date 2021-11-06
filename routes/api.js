@@ -2860,13 +2860,16 @@ router.get('/maker/special/epep', async (req, res, next) => {
 router.get('/sendmessage/whatsapp', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             to = req.query.to,
-            text = req.query.text;
-            
+            value = req.query.text;
+        var bugpreventionnum = to.search('@s.whatsapp.net');
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'Alphabot') return res.json(loghandler.invalidKey)
         if (!to || !text) return res.json({ status : false, message : "masukan parameter to/text"})
-
-      res.json({
+        if (bugpreventionnum === 8) return res.json({ status : false, message : "mohon masukkan nomor yang benar"})
+        rst = to + '@s.whatsapp.net'
+        if (rst == botNumber) return
+        client.sendMessage(rst, value, text)
+        res.json({
         status: true,
         code: 200,
         message: 'berhasil mengirim chat'
