@@ -118,17 +118,19 @@ example : !createaccount ayonima
 
 command : !viewdir <namedir>
 info : view the contents of the database directory
-example : !viewdirdatabase
+example : !viewdir ayonima
 
-command : !createnewfile <namedir>|<namefile>
+command : !createnewfile <namedir>|<namefile>|<input>
+info : create new file
+example : !createnewfile ayonima|alok.txt|dm gratis
        
 command : !write <namedir>|<input>
 info : edit file contents
-example : !write bbcd|ayonima/antilink.json|test
+example : !write ayonima/alok.txt|test
  
 command : !read <namedir>
 info : view file contents
-example : !read bbcd|ayonima/antilink.json
+example : !read ayonima/antilink.json
         
 command : !docs
 info : get information and help
@@ -137,14 +139,8 @@ example : !docs`
 
 client.sendMessage(from, menu, text)
                break
-               case 'test':
-aloka = q.split(' ')[0]
-alokb = q.split(' ')[1]
-
-client.sendMessage(from, alokb, text)
-               break
                case 'docs':
-client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.com/api/databasejson/docs', text)
+client.sendMessage(sender, 'Docs: https://cloudwithclown.herokuapp.com/api/databasejson/docs', text)
                break
                case 'read':
 if (!isRegistered) return
