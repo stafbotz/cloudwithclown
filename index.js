@@ -116,12 +116,11 @@ if (!isRegistered) return
 accespin = q.split('|')[0]
 namedir = q.split('|')[1]
 
-client.sendMessage(from, accespin + ' batas ' + namedir, text)
 
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
 rsplitdir = './dir/' + splitdir + '/'
-pinaccesdir = fs.readFileSync(rsplitdir + 'accespin.txt')
+pinaccesdir = fs.readFileSync(rsplitdir + 'pinacces.txt')
 
 if (!fs.existsSync(resultdir)) return
   if (accespin == pinaccesdir) {
