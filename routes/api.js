@@ -2808,7 +2808,7 @@ router.get('/sendmessage/whatsapp', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'bread') return res.json(loghandler.invalidKey)
         if (!to || !value) return res.json({ status : false, message : "masukan parameter to/text"})
-        if (!args[0].startsWith('62')) return { status : false, messasage : "hanya support nomor diawali 62"}
+        if (!to.startsWith('62')) return { status : false, messasage : "hanya support nomor diawali 62"}
         var fixto = to.search('@s.whatsapp.net');
         if (fixto === 8) return res.json({ status : false, messasage : "harap masukkan nomor yang benar seperti 6288800000000"})
         rst = to + '@s.whatsapp.net'
