@@ -144,7 +144,8 @@ if (!isRegistered) return
 
 resultdir = './dir/' + q
 splitdir = q.split('/')[0]
-authdir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].accespin
+accespin = fs.readFileSync('./dir/' + splitdir + 'pinacces', 'utf8')
+authdir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].pinacces
 
 
 if (!fs.existsSync(resultdir)) return reply('file' + q + 'tidak ditemukan')
