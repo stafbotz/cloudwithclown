@@ -144,11 +144,11 @@ if (!isRegistered) return
 
 resultdir = './dir/' + q
 splitdir = q.split('/')[0]
-accespin = fs.readFileSync('./dir/' + splitdir + 'pinacces', 'utf8')
+accespin = fs.readFileSync('./dir/' + splitdir + /'pinacces', 'utf8')
 authdir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].pinacces
 
 
-if (!fs.existsSync(resultdir)) return reply('file' + q + 'tidak ditemukan')
+if (!fs.existsSync(resultdir)) return
 if (accespin !== authdir) return reply('acces denied')
     sendres = fs.readFileSync(resultdir, 'utf8')
     console.log(sendres)
