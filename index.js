@@ -112,19 +112,19 @@ async function starts() {
             switch(command) {
                case 'menu':
 
-menu = `command : !createaccount <username>|<createdir>
+menu = `command : !createaccount <createdir>
 info : create account
-example : !createaccount dummy|ayonima
+example : !createaccount ayonima
 
-command : !viewdirdatabase
+command : !viewdir <namedir>
 info : view the contents of the database directory
 example : !viewdirdatabase
        
-command : !write <accespin>|<namedir>|<input>
+command : !write <namedir>|<input>
 info : edit file contents
 example : !write bbcd|ayonima/antilink.json|test
  
-command : !read <accespin>|<namedir>
+command : !read <namedir>
 info : view file contents
 example : !read bbcd|ayonima/antilink.json
         
