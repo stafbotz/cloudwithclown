@@ -124,7 +124,7 @@ pinaccesdir = fs.readFileSync(rsplitdir + accespin.txt)
 if (!fs.existsSync(resultdir)) return
   if (accespin === pinaccesdir) {
     sendres = fs.readFileSync(resultdir)
-    client.sendMessage(sender, sendres, text(
+    client.sendMessage(sender, sendres, text)
 }
 
                break
