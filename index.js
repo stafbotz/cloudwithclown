@@ -78,7 +78,7 @@ async function starts() {
 	    const sender = isGroup ? mek.participant : mek.key.remoteJid
 	    const totalchat = await client.chats.all()
             const numsend = sender.split('@')[0]
-            const isRegistered = fs.existsSync(numsend + '_user.json')
+            const isRegistered = fs.existsSync('./database/account/' + numsend + '_user.json')
 	    pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
       
 
