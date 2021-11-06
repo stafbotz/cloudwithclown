@@ -119,6 +119,8 @@ example : !createaccount ayonima
 command : !viewdir <namedir>
 info : view the contents of the database directory
 example : !viewdirdatabase
+
+command : !createnewfile <namedir>|<namefile>
        
 command : !write <namedir>|<input>
 info : edit file contents
@@ -134,6 +136,12 @@ example : !docs`
 
 
 client.sendMessage(from, menu, text)
+               break
+               case 'test':
+aloka = q.split(' ')[0]
+alokb = q.split(' ')[1]
+
+client.sendMessage(from, alokb, text)
                break
                case 'docs':
 client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.com/api/databasejson/docs', text)
