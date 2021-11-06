@@ -142,9 +142,10 @@ client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.
 if (!isRegistered) return
 
 
-resultdir = './dir/' + q
-splitdir = q.split('/')[0]
-accespin = fs.readFileSync('./dir/' + splitdir + '/pinacces.json', 'utf8')[0].pinacces
+splitdiro = q.split('/')[0]
+splitdirt = q.split('/')[1]
+resultdir = './dir/' + splitdiro + '/path/' + splitdirt
+accespin = fs.readFileSync('./dir/' + splitdiro + '/pinacces.json', 'utf8')[0].pinacces
 authdir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].pinacces
 
 
