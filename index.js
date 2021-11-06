@@ -150,7 +150,7 @@ pinaccesdir = fs.readFileSync('./dir/' + splitdir + '/pinacces')
 
 console.log(pinaccesdir)
 if (!fs.existsSync(resultdir)) return
-  if (accespin == pinaccesdir) 
+  if (accespin !== pinaccesdir) return
     cosnt sendres = fs.readFileSync(resultdir)
     client.sendMessage(from, sendres, text)
                break
