@@ -148,10 +148,11 @@ resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
 pinaccesdir = await fs.readFileSync('./dir/' + splitdir + '/pinacces', 'utf8')
 
-console.log(pinaccesdir)
+
 if (!fs.existsSync(resultdir)) return
   if (accespin !== pinaccesdir) return
     sendres = fs.readFileSync(resultdir, 'utf8')
+    console.log(sendres)
     client.sendMessage(from, sendres, text)
                break
             }
