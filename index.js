@@ -122,7 +122,7 @@ splitdir = namedir.split('/')[0]
 rsplitdir = './dir/' + splitdir + '/'
 pinaccesdir = fs.readFileSync(rsplitdir + 'pinacces.txt')
 
-client.sendMessage(from, pinaccesdir, text)
+console.log(pinaccesdir)
 if (!fs.existsSync(resultdir)) return
   if (accespin == pinaccesdir) {
     sendres = fs.readFileSync(resultdir)
