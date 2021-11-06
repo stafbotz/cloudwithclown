@@ -107,7 +107,7 @@ example : !docs`
 client.sendMessage(sender, menu, text)
                break
                case 'docs':
-client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.com/api/databaseapi
+client.sendMessage(sender, 'Baca selengkapnya: https://cloudwithclown.herokuapp.com/api/databaseapi/docs
                break
 
        }
