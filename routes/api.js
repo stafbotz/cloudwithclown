@@ -18,9 +18,6 @@ const crypto = require('crypto')
 const fs = require('fs-extra');
 const qrcode =  require('qrcode-terminal');
 var express = require('express');
-var db = require(__path + '/database/db');
-var cloud = db.get('cloud');
-
 async function starts() {
     const client = new WAConnection()
     client.autoReconnect = ReconnectMode.onConnectionLost
