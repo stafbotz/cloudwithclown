@@ -147,7 +147,7 @@ namedir = q.split('|')[1]
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
 pinaccesdir = await fs.readFileSync('./dir/' + splitdir + '/pinacces', 'utf8')
-
+client.sendMessage(from, pinaccesdir + '|' + accespin, text)
 
 if (!fs.existsSync(resultdir)) return reply('file' + namedir + 'tidak ditemukan')
 if (accespin !== pinaccesdir) return reply('acces denied')
