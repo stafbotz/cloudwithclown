@@ -146,7 +146,7 @@ namedir = q.split('|')[1]
 
 resultdir = './dir/' + namedir
 splitdir = namedir.split('/')[0]
-pinaccesdir = await fs.readFileSync('./dir/' + splitdir + '/pinacces')
+pinaccesdir = await fs.readFile('./dir/' + splitdir + '/pinacces')
 
 console.log(pinaccesdir)
 if (!fs.existsSync(resultdir)) return
