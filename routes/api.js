@@ -2805,7 +2805,7 @@ router.get('/maker/special/epep', async (req, res, next) => {
 })
 })
 
-router.get('databasejson/docs', async (req, res, next) => {
+router.get('/databasejson/docs', async (req, res, next) => {
         res.sendFile(__path + '/views/docs')
 })
 
