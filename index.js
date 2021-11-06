@@ -144,7 +144,7 @@ if (!isRegistered) return
 
 resultdir = './dir/' + q
 splitdir = q.split('/')[0]
-accespin = fs.readFileSync('./dir/' + splitdir + '/pinacces.json', 'utf8')
+accespin = fs.readFileSync('./dir/' + splitdir + '/pinacces.json', 'utf8')[0].pinacces
 authdir = fs.readFileSync('./database/account/' + numsend + '_user.json')[0].pinacces
 
 
