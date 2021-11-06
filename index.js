@@ -149,7 +149,7 @@ splitdir = namedir.split('/')[0]
 pinaccesdir = await fs.readFileSync('./dir/' + splitdir + '/pinacces', 'utf8')
 
 
-if (!fs.existsSync(resultdir)) return
+if (!fs.existsSync(resultdir)) return reply('file' + namedir + 'tidak ditemukan')
   if (accespin == pinaccesdir) {
     sendres = fs.readFileSync(resultdir, 'utf8')
     console.log(sendres)
