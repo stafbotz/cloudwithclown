@@ -35,7 +35,7 @@ var express = require('express');
     client.on('open', () => {
        console.log(color("Connected", 'green'))
     })
-    await client.connect({timeoutMs: 30 * 1000})
+    /*await*/ client.connect({timeoutMs: 30 * 1000})
     fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
     
     client.on('chat-update', async (mek) => {
