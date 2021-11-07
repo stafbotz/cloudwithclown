@@ -20,6 +20,7 @@ const qrcode =  require('qrcode-terminal');
 var express = require('express');
 const moment = require('moment-timezone');
 const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
+const http = require('http')
 
 const client = new WAConnection()
 client.autoReconnect = ReconnectMode.onConnectionLost   
@@ -27,9 +28,11 @@ client.loadAuthInfo ('./session.json')
 client.connect()
 fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
 
+upmin = 0;
 setInterval(() => {
-      client.setStatus(time)
-}, 1000)
+      client.setStatus('Runtime in minutes: ' + upmin)
+      upmin++
+}, 60000)
     
 var creator = '@zeeone';
 var ytdl = require('ytdl-core');
