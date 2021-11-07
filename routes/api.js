@@ -2841,12 +2841,10 @@ router.get('/deploy', async (req, res, next) => {
         branches = req.query.branches
         randKey = crypto.randomBytes(5).toString('hex').slice(0, 5);
         download = 'http://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip';
-        fpath = fs.createWriteStream('../tmp/' + randKey + '.zip')
     
         const request = await http.get(download, function(response) {
             console.log('starting deploy')
-            console.log('code: ' + response)
-            response.pipe(fpath);
+            await fs.writeFileSync('../tmp/' + randKey + '.zip', response)
         })
         if(request) {
         res.json({
