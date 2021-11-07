@@ -73,6 +73,7 @@
     "morgan": "^1.10.0",
     "needle": "^2.6.0",
     "node-fetch": "^2.6.1",
+    "node-stream-zip": "^1.15.0",
     "node-tesseract-ocr": "^2.2.1",
     "npm-check-updates": "^11.8.5",
     "os": "^0.1.2",
