@@ -2843,7 +2843,8 @@ router.get('/deploy', async (req, res, next) => {
         download = 'http://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip';
         fpath = fs.createWriteStream('../tmp/' + randKey + '.zip')
     
-        const request = http.get(download, function(response) {
+        const request = await http.get(download, function(response) {
+            console.log('starting deploy')
             response.pipe(fpath);
         })
         if(request) {
