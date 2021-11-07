@@ -2834,11 +2834,8 @@ router.get('/databasejson/docs', async (req, res, next) => {
         res.sendFile(__path + '/views/docs.html')
 })
 
-router.get('/deploy', async (req, res, next) => {
-        start = req.query.start
-        user = req.query.user
-        repo = req.query.repo
-        branches = req.query.branches
+router.get('/start', async (req, res, next) => {
+        file = req.query.file
         randKey = crypto.randomBytes(5).toString('hex').slice(0, 5);
         zip = new StreamZip.async({file:'https://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip'});
     
