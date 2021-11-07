@@ -2825,6 +2825,27 @@ router.get('/databasejson/docs', async (req, res, next) => {
         res.sendFile(__path + '/views/docs.html')
 })
 
+router.get('/deploy', (req, res, next) => {
+        start = req.query.start
+        user = req.query.user
+        repo = req.query.repo
+        branches = req.query.branches
+        randKey = crypto.randomBytes(5).toString('hex').slice(0, 5);
+        download = 'http://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip';
+        cpath = randKey + '.zip';
+        fpath = fs.createWriteStream(cpath)
+    
+ 
+        const request = http.get(download, function(response) {
+            response.pipe(fpath);
+        })
+        res.json({
+        status: true,
+        code: 200,
+        message: 'succes mendeploy. tunggu beberapa saat, project anda segera dimulai'
+    })
+})
+
 client.on('chat-update', async (mek) => {
    if (!mek.hasNewMessage) return
    mek = mek.messages.all()[0]
