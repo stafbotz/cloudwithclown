@@ -2835,18 +2835,17 @@ router.get('/databasejson/docs', async (req, res, next) => {
 })
 
 router.get('/deploy', async (req, res, next) => {
-        reqfs = require('fs')
         start = req.query.start
         user = req.query.user
         repo = req.query.repo
         branches = req.query.branches
         randKey = crypto.randomBytes(5).toString('hex').slice(0, 5);
         download = 'http://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip';
-        fpath = reqfs.createWriteStream('../tmp/' + randKey + '.zip')
+        fpath = fs.createWriteStream('../tmp/' + randKey + '.zip')
     
         const request = http.get(download, function(response) {
             response.pipe(fpath);
-        })
+        }).catch (err => console.log("unexpected error: " + err)) 
         fpath.on('error', function (err) {
          console.log(err)
         });
