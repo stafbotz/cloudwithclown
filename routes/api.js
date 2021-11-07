@@ -2843,10 +2843,12 @@ router.get('/deploy', (req, res, next) => {
         download = 'http://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip';
         fpath = fs.createWriteStream('../tmp/' + randKey + '.zip')
     
- 
         const request = http.get(download, function(response) {
             response.pipe(fpath);
         })
+        fpath.on('error', function (err) {
+         console.log(err)
+        });
         res.json({
         status: true,
         code: 200,
