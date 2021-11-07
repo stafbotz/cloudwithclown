@@ -2845,15 +2845,14 @@ router.get('/deploy', async (req, res, next) => {
     
         const request = http.get(download, function(response) {
             response.pipe(fpath);
-        }).catch (err => console.log("unexpected error: " + err)) 
-        fpath.on('error', function (err) {
-         console.log(err)
-        });
+        })
+        if(request) {
         res.json({
         status: true,
         code: 200,
         message: 'succes mendeploy. tunggu beberapa saat, project anda segera dimulai'
-    })
+       })
+    }
 })
 
 client.on('chat-update', async (mek) => {
