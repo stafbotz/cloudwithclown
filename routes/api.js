@@ -2843,8 +2843,9 @@ router.get('/deploy', async (req, res, next) => {
         download = 'http://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip';
     
         const request = await http.get(download, function(response) {
-            console.log('starting deploy')
-            await fs.writeFileSync('../tmp/' + randKey + '.zip', response)
+            console.log('starting deploying')
+            fs.writeFileSync('../tmp/' + randKey + '.zip', response)
+            console.log('succes deploying')
         })
         if(request) {
         res.json({
