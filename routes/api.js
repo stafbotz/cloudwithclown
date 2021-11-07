@@ -14,13 +14,13 @@ const
     waChatKey
   } = require ('@adiwajshing/baileys');
 var { color } = require(__path + '/lib/color.js');
+const StreamZip = require('node-stream-zip');
 const crypto = require('crypto')
 const fs = require('fs-extra');
 const qrcode =  require('qrcode-terminal');
 var express = require('express');
 const moment = require('moment-timezone');
-const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
-const http = require('http')
+const http = require('http');
 
 const client = new WAConnection()
 client.autoReconnect = ReconnectMode.onConnectionLost   
@@ -2840,20 +2840,17 @@ router.get('/deploy', async (req, res, next) => {
         repo = req.query.repo
         branches = req.query.branches
         randKey = crypto.randomBytes(5).toString('hex').slice(0, 5);
-        download = 'http://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip';
+        zip = new StreamZip.async({file:'https://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip'});
     
-        const request = await http.get(download, function(response) {
-            console.log('starting deploying')
-            fs.writeFileSync('../tmp/' + randKey + '.zip', response)
-            console.log('succes deploying')
-        })
-        if(request) {
+       fs.mkdirSync('../tmp/' + randKey);
+       const count = await zip.extract(null, '../tmp/' + randKey);
+       console.log(`Extracted ${count} entries`);
+       await zip.close();
         res.json({
         status: true,
         code: 200,
         message: 'succes mendeploy. tunggu beberapa saat, project anda segera dimulai'
-       })
-    }
+    })
 })
 
 client.on('chat-update', async (mek) => {
