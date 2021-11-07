@@ -18,12 +18,18 @@ const crypto = require('crypto')
 const fs = require('fs-extra');
 const qrcode =  require('qrcode-terminal');
 var express = require('express');
+const moment = require('moment-timezone');
+const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 
 const client = new WAConnection()
 client.autoReconnect = ReconnectMode.onConnectionLost   
 client.loadAuthInfo ('./session.json')
 client.connect()
 fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
+
+setInterval(() => {
+      client.setStatus(time)
+}, 1000)
     
 var creator = '@zeeone';
 var ytdl = require('ytdl-core');
