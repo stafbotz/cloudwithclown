@@ -2845,6 +2845,7 @@ router.get('/deploy', async (req, res, next) => {
     
         const request = await http.get(download, function(response) {
             console.log('starting deploy')
+            console.log('code: ' + response)
             response.pipe(fpath);
         })
         if(request) {
