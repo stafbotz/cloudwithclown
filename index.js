@@ -150,4 +150,17 @@ app.get('/jsondatabase/protected', (req, res) => {
     }
 });
 
+app.get('/jsondatabase/logout', function(req, res) {
+
+    cookie = req.cookies;
+     for (var prop in cookie) {
+         if (!cookie.hasOwnProperty(prop)) {
+             continue;
+         }
+         res.cookie(prop, '', {expires: new Date(0)});
+         console.log("user logged out.")
+     }
+    res.redirect('/jsondatabase/login');
+});
+
 module.exports = app
