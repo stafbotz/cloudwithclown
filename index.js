@@ -6,7 +6,6 @@ const exphbs = require('express-handlebars')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080 || 5000 || 3000
-
 const mainrouter = require('./routes/main')
 const apirouter = require('./routes/api')
 
@@ -23,10 +22,15 @@ app.engine('hbs', exphbs({extname: '.hbs'}))
 app.set('view engine', 'hbs')
 app.use('/', mainrouter)
 app.use('/api', apirouter)
-app.listen(PORT, () => {console.log(color("Server running on port " + PORT, 'green'))})
+app.listen(PORT, () => {
+    console.log(color("Server running on port " + PORT, 'green'))
+})
 
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
 })
+app.get('/jsondatabase/register', (req, res) => {
+    res.render('register');
+});
 
 module.exports = app
