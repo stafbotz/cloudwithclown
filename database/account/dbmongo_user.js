@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb');
-const uri = "mongodb://cloudwithclown:ZH5Knz%40-%235n6YRT@cloudwithclown-shard-00-01.y9f8f.mongodb.net:27017";
+const uri = "mongodb://cloudwithclown:ZH5Knz%40-%235n6YRT@cloudwithclown.y9f8f.mongodb.net:27017";
 const dbName = 'account';
 
 const client = new MongoClient(uri, {
