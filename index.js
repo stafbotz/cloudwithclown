@@ -29,7 +29,7 @@ app.listen(PORT, () => {
 
 
 
-app.get('/jsondatabase/', function (req, res) {
+app.get('/jsondatabase', function (req, res) {
     res.render('home');
 })
 
