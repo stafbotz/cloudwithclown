@@ -52,7 +52,7 @@ const users = [
     }
 ];
 
-app.post('/register', (req, res) => {
+app.post('/jsondatabase/register', (req, res) => {
     const { email, firstName, lastName, password, confirmPassword } = req.body;
 
     // Check if the password and confirm password fields match
@@ -89,6 +89,10 @@ app.post('/register', (req, res) => {
             messageClass: 'alert-danger'
         });
     }
+});
+
+app.get('/jsondatabase/login', (req, res) => {
+    res.render('login');
 });
 
 module.exports = app
