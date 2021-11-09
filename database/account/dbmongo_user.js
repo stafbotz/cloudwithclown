@@ -9,7 +9,7 @@ const client = new MongoClient(uri, {
 
 client.connect((error, client) => {
   if (error) {
-     return console.log('connection failed');
+     return console.log('connection failed: ' + error);
   }
   // Select database
   const db = client.db(dbName);
