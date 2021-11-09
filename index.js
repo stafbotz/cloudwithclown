@@ -7,8 +7,11 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080 || 5000 || 3000
 
-var mainrouter = require('./routes/main'),
-    apirouter = require('./routes/api')
+/*var mainrouter = require('./routes/main'),
+    apirouter = require('./routes/api')*/
+
+const mainrouter = require('./routes/main')
+const apirouter = require('./routes/api')
 
 var app = express()
 app.enable('trust proxy');
