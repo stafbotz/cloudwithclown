@@ -1,9 +1,11 @@
-var { color } = require('./lib/color.js');
-var express = require('express'),
-    cors = require('cors'),
-    secure = require('ssl-express-www');
+const { color } = require('./lib/color.js');
+const express = require('express')
+const cors = require('cors')
+const secure = require('ssl-express-www')
+const exphbs = require('express-handlebars')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080 || 5000 || 3000
-
 
 var mainrouter = require('./routes/main'),
     apirouter = require('./routes/api')
