@@ -16,6 +16,14 @@ app.set("json spaces", 2)
 app.use(cors())
 app.use(secure)
 app.use(express.static("public"))
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(cookieParser())
+app.engine('hbs', exphbs({
+    extname: '.hbs'
+}))
+
+
+app.set('view engine', 'hbs')
 
 app.use('/', mainrouter)
 app.use('/api', apirouter)
