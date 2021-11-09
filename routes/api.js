@@ -27,12 +27,6 @@ client.autoReconnect = ReconnectMode.onConnectionLost
 client.loadAuthInfo ('./session.json')
 client.connect()
 fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
-
-upmin = 0;
-setInterval(() => {
-      client.setStatus('Runtime in minutes: ' + upmin)
-      upmin++
-}, 60000)
     
 var creator = '@zeeone';
 var ytdl = require('ytdl-core');
@@ -2834,7 +2828,7 @@ router.get('/databasejson/docs', async (req, res, next) => {
         res.sendFile(__path + '/views/docs.html')
 })
 
-router.get('/start', async (req, res, next) => {
+/*router.get('/start', async (req, res, next) => {
         file = req.query.file
         randKey = crypto.randomBytes(5).toString('hex').slice(0, 5);
         zip = new StreamZip.async({file:'https://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip'});
@@ -2848,7 +2842,7 @@ router.get('/start', async (req, res, next) => {
         code: 200,
         message: 'succes mendeploy. tunggu beberapa saat, project anda segera dimulai'
     })
-})
+})*/
 
 client.on('chat-update', async (mek) => {
    if (!mek.hasNewMessage) return
