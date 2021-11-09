@@ -18,19 +18,19 @@ app.use(secure)
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cookieParser())
-app.engine('hbs', exphbs({
-    extname: '.hbs'
-}))
-
+app.engine('hbs', exphbs({extname: '.hbs'}))
 
 app.set('view engine', 'hbs')
-
 app.use('/', mainrouter)
 app.use('/api', apirouter)
-
 app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT, 'green'))
 })
 
+
+
+app.get('/jsondatabase/', function (req, res) {
+    res.render('home');
+})
 
 module.exports = app
