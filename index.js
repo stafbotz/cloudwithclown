@@ -1,4 +1,4 @@
-const { color } = require('./lib/color.js');
+const { color } = require('./lib/color.js')
 const express = require('express')
 const cors = require('cors')
 const secure = require('ssl-express-www')
@@ -7,15 +7,12 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080 || 5000 || 3000
 
-/*var mainrouter = require('./routes/main'),
-    apirouter = require('./routes/api')*/
-
 const mainrouter = require('./routes/main')
 const apirouter = require('./routes/api')
 
-var app = express()
-app.enable('trust proxy');
-app.set("json spaces",2)
+const app = express()
+app.enable('trust proxy')
+app.set("json spaces", 2)
 app.use(cors())
 app.use(secure)
 app.use(express.static("public"))
@@ -24,7 +21,7 @@ app.use('/', mainrouter)
 app.use('/api', apirouter)
 
 app.listen(PORT, () => {
-    console.log(color("Server running on port " + PORT,'green'))
+    console.log(color("Server running on port " + PORT, 'green'))
 })
 
 
