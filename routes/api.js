@@ -13,14 +13,11 @@ const
     ProxyAgent,
     waChatKey
   } = require ('@adiwajshing/baileys');
-var { color } = require(__path + '/lib/color.js');
-const StreamZip = require('node-stream-zip');
-const crypto = require('crypto')
+const { color } = require(__path + '/lib/color.js');
+const crypto = require('crypto');
 const fs = require('fs-extra');
 const qrcode =  require('qrcode-terminal');
-var express = require('express');
-const moment = require('moment-timezone');
-const http = require('http');
+const express = require('express');
 
 const client = new WAConnection()
 client.autoReconnect = ReconnectMode.onConnectionLost   
@@ -2827,22 +2824,6 @@ router.get('/sendmessage/whatsapp', async (req, res, next) => {
 router.get('/databasejson/docs', async (req, res, next) => {
         res.sendFile(__path + '/views/docs.html')
 })
-
-/*router.get('/start', async (req, res, next) => {
-        file = req.query.file
-        randKey = crypto.randomBytes(5).toString('hex').slice(0, 5);
-        zip = new StreamZip.async({file:'https://github.com/' + user + '/' + repo + '/archive/refs/heads/' + branches + '.zip'});
-    
-       fs.mkdirSync('../tmp/' + randKey);
-       const count = await zip.extract(null, '../tmp/' + randKey);
-       console.log(`Extracted ${count} entries`);
-       await zip.close();
-        res.json({
-        status: true,
-        code: 200,
-        message: 'succes mendeploy. tunggu beberapa saat, project anda segera dimulai'
-    })
-})*/
 
 client.on('chat-update', async (mek) => {
    if (!mek.hasNewMessage) return
