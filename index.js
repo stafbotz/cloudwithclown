@@ -1,3 +1,4 @@
+const fs = require('fs-extra');
 const { color } = require('./lib/color.js')
 const express = require('express')
 const cors = require('cors')
