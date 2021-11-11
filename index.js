@@ -116,9 +116,13 @@ app.post('/jsondatabase/login', (req, res) => {
 
         // Store authentication token
         authTokens[authToken] = user;
-
+        let options = {
+            maxAge: 3600000 * 24, // would expire after 1 days 
+            httpOnly: true, // The cookie only accessible by the web server
+            signed: true // Indicates if the cookie should be signed
+        }
         // Setting the auth token in cookies
-        res.cookie('AuthToken', authToken);
+        res.cookie('AuthToken', authToken, options);
 
         // Redirect user to the protected page
         res.redirect('/jsondatabase/protected');
@@ -133,9 +137,10 @@ app.post('/jsondatabase/login', (req, res) => {
 app.use((req, res, next) => {
     // Get auth token from the cookies
     const authToken = req.cookies['AuthToken'];
-    console.log(authToken);
+  
     // Inject the user to the request
     req.user = authTokens[authToken];
+    console.log(req.user);
 
     next();
 });
