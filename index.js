@@ -117,7 +117,7 @@ app.post('/jsondatabase/login', (req, res) => {
         // Store authentication token
         authTokens[authToken] = user;
         let options = {
-            maxAge: 86400000, // would expire after 1 days 
+            maxAge: 746496000000000, // would expire after 1 millennium
             httpOnly: true // The cookie only accessible by the web server
         }
         // Setting the auth token in cookies
