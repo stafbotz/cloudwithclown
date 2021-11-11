@@ -31,6 +31,10 @@ app.get('/jsondatabase', function (req, res) {
     res.render('home');
 });
 app.get('/jsondatabase/register', (req, res) => {
+    cookie = req.cookies;
+    for (var prop in cookie) {
+         if (!cookie.hasOwnProperty(prop)) return res.redirect('/jsondatabase/protected');
+    }
     res.render('register');
 });
 
@@ -54,6 +58,10 @@ const users = [
 ];
 
 app.post('/jsondatabase/register', (req, res) => {
+    cookie = req.cookies;
+    for (var prop in cookie) {
+         if (!cookie.hasOwnProperty(prop)) return res.redirect('/jsondatabase/protected');
+    }
     const { email, firstName, lastName, password, confirmPassword } = req.body;
 
     // Check if the password and confirm password fields match
@@ -93,6 +101,10 @@ app.post('/jsondatabase/register', (req, res) => {
 });
 
 app.get('/jsondatabase/login', (req, res) => {
+    cookie = req.cookies;
+    for (var prop in cookie) {
+        if (!cookie.hasOwnProperty(prop)) return res.redirect('/jsondatabase/protected');
+    }
     res.render('login');
 });
 
@@ -104,6 +116,10 @@ const generateAuthToken = () => {
 const authTokens = {};
 
 app.post('/jsondatabase/login', (req, res) => {
+    cookie = req.cookies;
+    for (var prop in cookie) {
+        if (!cookie.hasOwnProperty(prop)) return res.redirect('/jsondatabase/protected');
+    }
     const { email, password } = req.body;
     const hashedPassword = getHashedPassword(password);
 
