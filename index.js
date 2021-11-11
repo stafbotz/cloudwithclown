@@ -119,6 +119,7 @@ app.post('/jsondatabase/login', (req, res) => {
 
         // Setting the auth token in cookies
         res.cookie('AuthToken', authToken);
+        console.log(req.cookies['AuthToken']);
 
         // Redirect user to the protected page
         res.redirect('/jsondatabase/protected');
