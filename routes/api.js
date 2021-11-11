@@ -13,7 +13,7 @@ const
     ProxyAgent,
     waChatKey
   } = require ('@adiwajshing/baileys');
-const { color } = require(__path + '/lib/color.js');
+const { color, bgcolor } = require(__path + '/lib/color.js');
 const crypto = require('crypto');
 const fs = require('fs-extra');
 const qrcode =  require('qrcode-terminal');
@@ -37,7 +37,6 @@ var request = require('request');
 var TikTokScraper = require('tiktok-scraper');
 var router  = express.Router();
 
-var { color, bgcolor } = require(__path + '/lib/color.js');
 var { fetchJson } = require(__path + '/lib/fetcher.js')
 var options = require(__path + '/lib/options.js');
 var {
