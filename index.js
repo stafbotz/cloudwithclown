@@ -31,7 +31,6 @@ app.get('/jsondatabase', function (req, res) {
     res.render('home');
 });
 app.get('/jsondatabase/register', (req, res) => {
-    if (req.cookies['AuthToken'] != undefined) return res.redirect('/jsondatabase/login');
     res.render('register');
 });
 
@@ -93,7 +92,6 @@ app.post('/jsondatabase/register', (req, res) => {
 });
 
 app.get('/jsondatabase/login', (req, res) => {
-    if (req.cookies['AuthToken'] != undefined) return res.redirect('/jsondatabase/protected');
     res.render('login');
 });
 
