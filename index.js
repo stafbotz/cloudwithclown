@@ -31,11 +31,12 @@ app.get('/jsondatabase', function (req, res) {
     res.render('home');
 });
 app.get('/jsondatabase/register', (req, res) => {
+    if (cookieauth != undefined) return;
     res.render('register');
 });
 
 const crypto = require('crypto');
-
+const cookieauth = req.cookies['AuthToken'];
 const getHashedPassword = (password) => {
     const sha256 = crypto.createHash('sha256');
     const hash = sha256.update(password).digest('base64');
@@ -93,7 +94,7 @@ app.post('/jsondatabase/register', (req, res) => {
 });
 
 app.get('/jsondatabase/login', (req, res) => {
-if (req.cookies['AuthToken'] !== undefined) return console.log(req.cookies['AuthToken']);
+    if (cookieauth != undefined) return;
     res.render('login');
 });
 
@@ -119,7 +120,7 @@ app.post('/jsondatabase/login', (req, res) => {
         authTokens[authToken] = user;
         let options = {
             maxAge: 746496000000000, // would expire after 1 millennium
-            //expires: new Date(365000),
+            expires: new Date(365000),
             secure: true,
             httpOnly: true, // The cookie only accessible by the web server
             sameSite: 'lax'
