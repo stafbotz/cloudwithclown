@@ -142,7 +142,7 @@ app.use((req, res, next) => {
 
 app.get('/jsondatabase/dashboard', (req, res) => {
     if (req.user) {
-        allnamefile = fs.readdirSync('./routes/');
+        allnamefile = await fs.readdirSync('./routes/');
         for(i in allnamefile) {
             res.render('dashboard', {
                 result : allnamefile
