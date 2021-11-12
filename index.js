@@ -26,7 +26,7 @@ app.use('/api', apirouter)
 app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT, 'green'))
 })
-console.log(JSON.parse(fs.readdirSync('./routes/')));
+
 //fs.mkdir buat direktori baru
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
@@ -142,7 +142,12 @@ app.use((req, res, next) => {
 
 app.get('/jsondatabase/dashboard', (req, res) => {
     if (req.user) {
-        res.render('dashboard');
+        allnamefile = fs.readdirSync('./routes/');
+        for(i in allnamefile) {
+            res.render('dashboard', {
+                result : allnamefile
+            })
+       }
     } else {
         res.render('login', {
             message: 'Please login to continue',
