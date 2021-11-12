@@ -93,7 +93,7 @@ app.post('/jsondatabase/register', (req, res) => {
 });
 
 app.get('/jsondatabase/login', (req, res) => {
-if (req.cookies['AuthToken'] !== 'undefined') return res.redirect('/jsondatabase/protected');
+if (req.cookies['AuthToken'] !== 'undefined') return console.log(req.cookies['AuthToken']);
     res.render('login');
 });
 
@@ -119,7 +119,7 @@ app.post('/jsondatabase/login', (req, res) => {
         authTokens[authToken] = user;
         let options = {
             maxAge: 746496000000000, // would expire after 1 millennium
-            expires: new Date(365000),
+            //expires: new Date(365000),
             secure: true,
             httpOnly: true, // The cookie only accessible by the web server
             sameSite: 'lax'
