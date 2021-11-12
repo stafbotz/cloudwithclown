@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080 || 5000 || 3000
 const mainrouter = require('./routes/main')
 const apirouter = require('./routes/api')
+const alokrouter = require('./routes/api')
 
 const app = express()
 app.enable('trust proxy')
@@ -23,13 +24,11 @@ app.engine('hbs', exphbs({extname: '.hbs'}))
 app.set('view engine', 'hbs')
 app.use('/', mainrouter)
 app.use('/api', apirouter)
+app.use('/jsondatabase', dbjsonrouter)
 app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT, 'green'))
 })
-
-// const antilink = JSON.parse(fs.readFileSync('./database/antilink.json'))
-
-
+//fs.mkdir
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
 });
