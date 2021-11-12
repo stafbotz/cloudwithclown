@@ -143,11 +143,9 @@ app.use((req, res, next) => {
 app.get('/jsondatabase/dashboard', (req, res) => {
     if (req.user) {
         allnamefile = fs.readdirSync('./routes/');
-        for(i in allnamefile) {
-            res.render('dashboard', {
-                result : i
-            });
-       }
+        res.render('dashboard', {
+            result : allnamefile
+        });
     } else {
         res.render('login', {
             message: 'Please login to continue',
