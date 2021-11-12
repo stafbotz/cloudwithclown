@@ -9,7 +9,9 @@ router.get('/', (req, res) => {
 router.get('/api', (req, res) => {
     res.sendFile(__path + '/views/index.html')
 })
-
+router.get('/meet', (req, res) => {
+    res.sendFile(__path + '/views/meet.html')
+})
 router.get('/api/news', (req, res) => {
     res.redirect('https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/Berita.json')
 })
