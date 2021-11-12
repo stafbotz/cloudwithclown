@@ -28,6 +28,7 @@ app.listen(PORT, () => {
 })
 
 app.get('/jsondatabase', function (req, res) {
+    cookieauth = req.cookies['AuthToken'];
     res.render('home');
 });
 app.get('/jsondatabase/register', (req, res) => {
@@ -36,7 +37,6 @@ app.get('/jsondatabase/register', (req, res) => {
 });
 
 const crypto = require('crypto');
-const cookieauth = req.cookies['AuthToken'];
 const getHashedPassword = (password) => {
     const sha256 = crypto.createHash('sha256');
     const hash = sha256.update(password).digest('base64');
