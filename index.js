@@ -26,7 +26,7 @@ app.use('/api', apirouter)
 app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT, 'green'))
 })
-console.log(fs.readdir('routes'));
+console.log(fs.readdirSync('/routes/'));
 //fs.mkdir buat direktori baru
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
