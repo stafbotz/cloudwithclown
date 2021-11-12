@@ -142,7 +142,6 @@ app.use((req, res, next) => {
   
     // Inject the user to the request
     req.user = authTokens[authToken];
-    console.log(req.user);
 
     next();
 });
