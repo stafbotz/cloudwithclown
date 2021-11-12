@@ -93,6 +93,7 @@ app.post('/jsondatabase/register', (req, res) => {
 });
 
 app.get('/jsondatabase/login', (req, res) => {
+if (req.cookies['AuthToken'] !== 'undefined') return res.redirect('/jsondatabase/protected');
     res.render('login');
 });
 
