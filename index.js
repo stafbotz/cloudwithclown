@@ -121,7 +121,7 @@ app.post('/jsondatabase/login', (req, res) => {
         res.cookie('AuthToken', authToken);
 
         // Redirect user to the protected page
-        res.redirect('/jsondatabase/protected');
+        res.redirect('/jsondatabase/dashboard');
     } else {
         res.render('login', {
             message: 'Invalid username or password',
@@ -140,9 +140,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/jsondatabase/protected', (req, res) => {
+app.get('/jsondatabase/dashboard', (req, res) => {
     if (req.user) {
-        res.render('protected');
+        res.render('dashboard');
     } else {
         res.render('login', {
             message: 'Please login to continue',
