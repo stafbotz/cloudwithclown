@@ -27,6 +27,9 @@ app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT, 'green'))
 })
 
+// const antilink = JSON.parse(fs.readFileSync('./database/antilink.json'))
+
+
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
 });
