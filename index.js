@@ -192,7 +192,7 @@ app.post('/jsondatabase/create', (req, res) => {
            }
          } else {
              res.render('create', {
-                    message: 'Filename is too long' + fileName.length,
+                    message: 'Filename is too long' + nameFile.length,
                     messageClass: 'alert-danger'
              });
        }
