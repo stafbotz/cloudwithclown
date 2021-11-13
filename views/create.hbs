@@ -1,0 +1,37 @@
+<div class="row justify-content-md-center" style="margin-top: 100px">
+    <div class="col-md-6">
+      <div class="card">
+            <div class="card-header bg-transparent mb-0">
+            <h5 class="text-center">
+              Create New <span class="font-weight-bold text-primary">FILE</span>
+            </h5>
+            </div>
+      <div class="card-body">
+      {{#if message}}
+         <div class="alert {{messageClass}}" role="alert">
+             {{message}}
+         </div>
+      {{/if}}
+
+      <form method="POST" action="/jsondatabase/create">
+         <div class="form-group">
+             <label for="nameFile">Name File</label>
+             <input name="email" type="email" class="form-control" id="nameFile" placeholder="Enter name file">
+         </div>
+         <div class="form-group">
+             <label for="contentsFile">Contents File</label>
+             <textarea class="form-control" rows="5" id="contentsFile" placeholder="Enter contents">
+         </div>
+         <div>
+             <button type="submit" class="btn btn-primary btn-block">Submit</button>
+             <button type="reset" class="btn btn-danger btn-block">Cancel</button>
+         </div>
+       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-haze2" viewBox="0 0 16 16">
+           <path d="M8.5 3a4.002 4.002 0 0 0-3.8 2.745.5.5 0 1 1-.949-.313 5.002 5.002 0 0 1 9.654.595A3 3 0 0 1 13 12H4.5a.5.5 0 0 1 0-1H13a2 2 0 0 0 .001-4h-.026a.5.5 0 0 1-.5-.445A4 4 0 0 0 8.5 3zM0 7.5A.5.5 0 0 1 .5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm2 2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-2 4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+     </form>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
