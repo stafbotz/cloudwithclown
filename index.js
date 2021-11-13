@@ -173,28 +173,22 @@ app.post('/jsondatabase/create', (req, res) => {
     if (req.user) {
         const { nameFile, contentsFile } = req.body;
         const resultDir = './database/hostdb/' + req.user.email + '/' + nameFile
-        if (!nameFile.length > 50) {
-            if (!nameFile.includes('/') || !nameFile.includes('.')) {
-                if (!fs.existsSync(resultDir)) {
-                    fs.writeFileSync(resultDir, contentsFile);
-                    res.redirect('/jsondatabase/dashboard');
-                } else {
-                    res.render('create', {
-                        message: 'File already exists',
-                        messageClass: 'alert-danger'
-                    });
-                }
+
+        if (!nameFile.includes('/') || !nameFile.includes('.')) {
+            if (!fs.existsSync(resultDir)) {
+                fs.writeFileSync(resultDir, contentsFile);
+                res.redirect('/jsondatabase/dashboard');
             } else {
                 res.render('create', {
-                    message: 'Forbidden characters',
+                    message: 'File already exists',
                     messageClass: 'alert-danger'
                 });
-           }
-         } else {
-             res.render('create', {
-                    message: 'Filename is too long' + nameFile.length,
-                    messageClass: 'alert-danger'
-             });
+            }
+        } else {
+            res.render('create', {
+                message: 'Forbidden characters',
+                messageClass: 'alert-danger'
+            });
        }
     } else {
         res.render('login', {
