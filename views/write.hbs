@@ -16,11 +16,11 @@
       <form method="POST" action="/jsondatabase/v1/write">
          <div class="form-group">
              <label for="nameFile">Name File</label>
-             <input name="nameFile" type="text" class="form-control" id="nameFile" placeholder="Enter name file">
+             <input name="nameFile" type="text" class="form-control" id="nameFile" placeholder="Enter name file" value="{{nameFileValue}}">
          </div>
          <div class="form-group">
              <label for="contentsFile">Contents File</label>
-             <textarea class="form-control" rows="5" name="contentsFile" id="contentsFile" placeholder="Enter contents"></textarea>
+             <textarea class="form-control" rows="5" name="contentsFile" id="contentsFile" placeholder="Enter contents">{{contentsFileValue}}</textarea>
          </div>
          <div>
              <button type="submit" class="btn btn-primary btn-block">Submit</button>
