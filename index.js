@@ -70,16 +70,12 @@ app.post('/jsondatabase/register', (req, res) => {
             password: hashedPassword
         });
 
-        fs.writeFile('./database/dbaccount_local.json', JSON.stringify(users), (err) => {
-             if (err) return res.json({ status : false});
-             res.json({ status : true });
-             console.log('Saved!');
-        }); 
+        fs.writeFileSync('./database/dbaccount_local.json', JSON.stringify(users)); 
 
-        /*res.render('login', {
+        res.render('login', {
             message: 'Registration Complete. Please login to continue.',
             messageClass: 'alert-success'
-        });*/
+        });
     } else {
         res.render('register', {
             message: 'Password does not match.',
