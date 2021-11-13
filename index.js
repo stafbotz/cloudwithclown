@@ -169,6 +169,27 @@ app.get('/jsondatabase/create', (req, res) => {
     }
 });
 
+app.post('/jsondatabase/create', (req, res) => {
+    if (req.user) {
+        const { nameFile, contentsFile } = req.body;
+        if (!nameFile.includes('/')) {
+            fs.writeFileSync('./database/hostdb/' + req.user.email + '/' + nameFile, contentsFile, (err) => {
+                if (!err) return res.redirect('/jsondatabase/dashboard');
+            })
+        } else {
+            res.render('create', {
+            message: 'Character "/" is not allowed',
+            messageClass: 'alert-danger'
+         });
+       }
+    } else {
+        res.render('login', {
+            message: 'Please login to continue',
+            messageClass: 'alert-danger'
+        });
+    }
+});
+
 app.get('/jsondatabase/logout', function(req, res) {
     cookie = req.cookies;
     for (var prop in cookie) {
