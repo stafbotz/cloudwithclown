@@ -155,7 +155,7 @@ app.get('/jsondatabase/dashboard', (req, res) => {
     }
 });
 
-app.get('/jsondatabase/dashboard', (req, res) => {
+app.get('/jsondatabase/create', (req, res) => {
     if (req.user) {
         allnamefile = fs.readdirSync('./database/hostdb/' + req.user.email);
         res.render('dashboard', {
