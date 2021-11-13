@@ -240,6 +240,32 @@ app.get('/jsondatabase/v1/write', (req, res) => {
     }
 });
 
+app.post('/jsondatabase/v1/write', (req, res) => {
+    if (req.user) {
+        const { oldNameFile, nameFile, contentsFile } = req.body;
+        const resultDir = './database/hostdb/' + req.user.email + '/' + oldNameFile
+
+        if (!nameFile.includes('/')) {
+            if (fs.existsSync(resultDir)) {
+                fs.writeFileSync(resultDir, contentsFile);
+                res.redirect('/jsondatabase/v1/dashboard');
+            } else {
+                res.redirect('/jsondatabase/v1/dashboard');
+          }
+        } else {
+            res.render('write', {
+                message: 'Character / not allowed',
+                messageClass: 'alert-danger'
+            });
+       }
+    } else {
+        res.render('login', {
+            message: 'Please login to continue',
+            messageClass: 'alert-danger'
+        });
+    }
+});
+
 app.get('/jsondatabase/v1/logout', function(req, res) {
     cookie = req.cookies;
     for (var prop in cookie) {
