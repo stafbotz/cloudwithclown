@@ -174,7 +174,8 @@ app.post('/jsondatabase/create', (req, res) => {
         const { nameFile, contentsFile } = req.body;
         if (!nameFile.includes('/')) {
             fs.writeFileSync('./database/hostdb/' + req.user.email + '/' + nameFile, contentsFile, (err) => {
-                if (!err) return res.redirect('/jsondatabase/dashboard');
+                if (!err) throw res.redirect('/jsondatabase/dashboard');
+                req.json({ status : false });
             })
         } else {
             res.render('create', {
