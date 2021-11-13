@@ -27,7 +27,6 @@ app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT, 'green'))
 })
 
-//fs.mkdir buat direktori baru
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
 });
@@ -71,7 +70,7 @@ app.post('/jsondatabase/register', (req, res) => {
         });
 
         fs.writeFileSync('./database/dbaccount_local.json', JSON.stringify(users)); 
-
+        fs.mkdirSync('./database/hostdb/' + email);
         res.render('login', {
             message: 'Registration Complete. Please login to continue.',
             messageClass: 'alert-success'
@@ -134,7 +133,7 @@ app.use((req, res, next) => {
 
 app.get('/jsondatabase/dashboard', (req, res) => {
     if (req.user) {
-        allnamefile = fs.readdirSync('./routes/');
+        allnamefile = fs.readdirSync('./database/hostdb/');
         res.render('dashboard', {
             result : allnamefile
         });
