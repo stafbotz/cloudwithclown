@@ -71,7 +71,7 @@ app.post('/jsondatabase/register', (req, res) => {
         });
 
         fs.writeFileSync('./database/dbaccount_local.json', JSON.stringify(users), (err) => {
-             if (err) throw console.log(err);
+             if (err) return console.log(err);
              console.log('Saved!');
         }); 
 
