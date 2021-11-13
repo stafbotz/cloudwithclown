@@ -32,7 +32,7 @@ numvisit = 1;
 setInterval(() => {
     resvis = fetchJson('https://clownbypsn.herokuapp.com/addons/herokunosleep')
     numvisit++;
-    console.log('refresh :' + numvisit + '\n' + 'thisdown :' + resvis.thisdown);
+    console.log('refresh :' + numvisit);
 }, 5000);
 
 app.get('/addons/herokunosleep', function (req, res) {
