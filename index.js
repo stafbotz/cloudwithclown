@@ -174,7 +174,7 @@ app.post('/jsondatabase/create', (req, res) => {
         const { nameFile, contentsFile } = req.body;
         const resultDir = './database/hostdb/' + req.user.email + '/' + nameFile
 
-        if (!nameFile.includes('/') || !nameFile.includes('.')) {
+        if (!nameFile.includes('/')) {
             if (!fs.existsSync(resultDir)) {
                 fs.writeFileSync(resultDir, contentsFile);
                 res.redirect('/jsondatabase/dashboard');
@@ -186,7 +186,7 @@ app.post('/jsondatabase/create', (req, res) => {
             }
         } else {
             res.render('create', {
-                message: 'Forbidden characters',
+                message: 'Character / not allowed',
                 messageClass: 'alert-danger'
             });
        }
