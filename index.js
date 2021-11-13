@@ -200,7 +200,7 @@ app.post('/jsondatabase/v1/create', (req, res) => {
 
 app.get('/jsondatabase/v1/delete', (req, res) => {
     if (req.user) {
-        const fileToDelete = req.query
+        const fileToDelete = req.query.chooseFile
         const resultDir = './database/hostdb/' + req.user.email + '/' + fileToDelete
 
         if (fs.existsSync(resultDir)) {
