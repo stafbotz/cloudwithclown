@@ -71,14 +71,14 @@ app.post('/jsondatabase/register', (req, res) => {
         });
 
         fs.writeFileSync('./database/dbaccount_local.json', JSON.stringify(users), (err) => {
-             if (err) return console.log(err);
+             if (err) return res.json({ status : 'error'});
              console.log('Saved!');
         }); 
 
-        res.render('login', {
+        /*res.render('login', {
             message: 'Registration Complete. Please login to continue.',
             messageClass: 'alert-success'
-        });
+        });*/
     } else {
         res.render('register', {
             message: 'Password does not match.',
