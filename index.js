@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const { color } = require('./lib/color.js')
-const { refreshheroku } = require('./lib/refreshheroku.js')
+const { fetchJson } = require('./lib/fetcher.js')
 const express = require('express')
 const cors = require('cors')
 const secure = require('ssl-express-www')
