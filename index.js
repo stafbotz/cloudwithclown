@@ -31,7 +31,7 @@ countervisit = 1;
 setInterval(() => {
     //add visitors every 5 seconds and prevent the app from being turned off on heroku
     addvisitor();
-    coountervisit++;
+    countervisit++;
     console.log('counter visit:' + countervisit);
 }, 5000);
 
