@@ -217,6 +217,29 @@ app.get('/jsondatabase/v1/delete', (req, res) => {
     }
 });
 
+app.get('/jsondatabase/v1/write', (req, res) => {
+    if (req.user) {
+        const fileToWrite = req.query.chooseFile
+        const resultDir = './database/hostdb/' + req.user.email + '/' + fileToWrite
+
+        if (fs.existsSync(resultDir)) {
+                nameFileValue = fileToWrite;
+                contentsFileValue = fs.readFileSync(resultDir, 'utf8');
+                res.render('write', {
+                    nameFileValue: nameFileValue,
+                    contentsFileValue: contentsFileValue
+                });
+        } else {
+                res.redirect('/jsondatabase/v1/dashboard');
+      }
+    } else {
+        res.render('login', {
+            message: 'Please login to continue',
+            messageClass: 'alert-danger'
+        });
+    }
+});
+
 app.get('/jsondatabase/v1/logout', function(req, res) {
     cookie = req.cookies;
     for (var prop in cookie) {
