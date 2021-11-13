@@ -41,17 +41,7 @@ const getHashedPassword = (password) => {
     const hash = sha256.update(password).digest('base64');
     return hash;
 };
-
-const users = [
-    // This user is added to the array to avoid creating a new user on each restart
-    {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@email.com',
-        // This is the SHA256 hash for value of `password`
-        password: 'XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg='
-    }
-];
+const users = fs.readFileSync(./database/dbaccount_local.json')
 
 app.post('/jsondatabase/register', (req, res) => {
     const { email, firstName, lastName, password, confirmPassword } = req.body;
@@ -79,7 +69,7 @@ app.post('/jsondatabase/register', (req, res) => {
             email,
             password: hashedPassword
         });
-
+        fs.writeFileSync('./database/dbaccount_local.json', JSON.stringify(users))
         res.render('login', {
             message: 'Registration Complete. Please login to continue.',
             messageClass: 'alert-success'
