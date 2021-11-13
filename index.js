@@ -70,7 +70,7 @@ app.post('/jsondatabase/register', (req, res) => {
             password: hashedPassword
         });
 
-        fs.writeFileSync('./database/dbaccount_local.json', JSON.stringify(users), (err) => {
+        fs.writeFile('./database/dbaccount_local.json', JSON.stringify(users), (err) => {
              if (err) return res.json({ status : false});
              res.json({ status : true });
              console.log('Saved!');
