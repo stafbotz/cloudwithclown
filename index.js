@@ -125,7 +125,7 @@ app.post('/jsondatabase/v1/login', (req, res) => {
         res.cookie('AuthToken', authToken);
 
         // Redirect user to the protected page
-        res.redirect('/jsondatabase/dashboard');
+        res.redirect('/jsondatabase/v1/dashboard');
     } else {
         res.render('login', {
             message: 'Invalid username or password',
@@ -177,7 +177,7 @@ app.post('/jsondatabase/v1/create', (req, res) => {
         if (!nameFile.includes('/')) {
             if (!fs.existsSync(resultDir)) {
                 fs.writeFileSync(resultDir, contentsFile);
-                res.redirect('/jsondatabase/dashboard');
+                res.redirect('/jsondatabase/v1/dashboard');
             } else {
                 res.render('create', {
                     message: 'File already exists',
@@ -200,25 +200,15 @@ app.post('/jsondatabase/v1/create', (req, res) => {
 
 app.get('/jsondatabase/v1/delete', (req, res) => {
     if (req.user) {
-        const { nameFile, contentsFile } = req.body;
-        const resultDir = './database/hostdb/' + req.user.email + '/' + nameFile
+        const fileToDelete = req.query.apikey
+        const resultDir = './database/hostdb/' + req.user.email + '/' + fileToDelete
 
-        if (!nameFile.includes('/')) {
-            if (!fs.existsSync(resultDir)) {
-                fs.writeFileSync(resultDir, contentsFile);
-                res.redirect('/jsondatabase/dashboard');
-            } else {
-                res.render('create', {
-                    message: 'File already exists',
-                    messageClass: 'alert-danger'
-                });
-            }
+        if (fs.existsSync(resultDir)) {
+                fs.unlinkSync(resultDir);
+                res.redirect('/jsondatabase/v1/dashboard');
         } else {
-            res.render('create', {
-                message: 'Character / not allowed',
-                messageClass: 'alert-danger'
-            });
-       }
+                res.redirect('/jsondatabase/v1/dashboard');
+      }
     } else {
         res.render('login', {
             message: 'Please login to continue',
@@ -236,7 +226,7 @@ app.get('/jsondatabase/v1/logout', function(req, res) {
         res.cookie(prop, '', {expires: new Date(0)});
         console.log("user logged out.")
     }
-    res.redirect('/jsondatabase/login');
+    res.redirect('/jsondatabase/v1/login');
 });
 
 module.exports = app
