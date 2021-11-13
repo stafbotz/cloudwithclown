@@ -198,6 +198,35 @@ app.post('/jsondatabase/v1/create', (req, res) => {
     }
 });
 
+app.get('/jsondatabase/v1/delete', (req, res) => {
+    if (req.user) {
+        const { nameFile, contentsFile } = req.body;
+        const resultDir = './database/hostdb/' + req.user.email + '/' + nameFile
+
+        if (!nameFile.includes('/')) {
+            if (!fs.existsSync(resultDir)) {
+                fs.writeFileSync(resultDir, contentsFile);
+                res.redirect('/jsondatabase/dashboard');
+            } else {
+                res.render('create', {
+                    message: 'File already exists',
+                    messageClass: 'alert-danger'
+                });
+            }
+        } else {
+            res.render('create', {
+                message: 'Character / not allowed',
+                messageClass: 'alert-danger'
+            });
+       }
+    } else {
+        res.render('login', {
+            message: 'Please login to continue',
+            messageClass: 'alert-danger'
+        });
+    }
+});
+
 app.get('/jsondatabase/v1/logout', function(req, res) {
     cookie = req.cookies;
     for (var prop in cookie) {
