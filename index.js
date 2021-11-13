@@ -172,10 +172,18 @@ app.get('/jsondatabase/create', (req, res) => {
 app.post('/jsondatabase/create', (req, res) => {
     if (req.user) {
         const { nameFile, contentsFile } = req.body;
+        const resultDir = './database/hostdb/' + req.user.email + '/' + nameFile
+
         if (!nameFile.includes('/')) {
-            fs.writeFileSync('./database/hostdb/' + req.user.email + '/' + nameFile, contentsFile);
-            res.redirect('/jsondatabase/dashboard');
-            })
+            if (!fs.existsSync(resultDir)) {
+                fs.writeFileSync(resultDir, contentsFile);
+                res.redirect('/jsondatabase/dashboard');
+            } else {
+              res.render('create', {
+                  message: 'File already exists',
+                  messageClass: 'alert-danger'
+              });
+            }
         } else {
             res.render('create', {
             message: 'Character / is not allowed',
