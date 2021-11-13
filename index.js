@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const { color } = require('./lib/color.js')
+const { addvisitor } = require('./lib/addvisitor.js')
 const express = require('express')
 const cors = require('cors')
 const secure = require('ssl-express-www')
@@ -26,6 +27,13 @@ app.use('/api', apirouter)
 app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT, 'green'))
 })
+countervisit = 1;
+setInterval(() => {
+    //add visitors every 10 minutes and prevent the app from being turned off on heroku
+    addvisitor();
+    coountervisit++;
+    console.log('counter visit:' + countervisit);
+}, 600000);
 
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
@@ -35,7 +43,9 @@ app.get('/jsondatabase/register', (req, res) => {
 });
 
 const crypto = require('crypto');
-const users = JSON.parse(fs.readFileSync('./database/dbaccount_local.json'))
+const users = [
+    // This user is added to the array to avoid creating a new user on each restart
+];
 const getHashedPassword = (password) => {
     const sha256 = crypto.createHash('sha256');
     const hash = sha256.update(password).digest('base64');
@@ -69,8 +79,8 @@ app.post('/jsondatabase/register', (req, res) => {
             password: hashedPassword
         });
 
-        fs.writeFileSync('./database/dbaccount_local.json', JSON.stringify(users)); 
         fs.mkdirSync('./database/hostdb/' + email);
+
         res.render('login', {
             message: 'Registration Complete. Please login to continue.',
             messageClass: 'alert-success'
