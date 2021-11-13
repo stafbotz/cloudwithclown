@@ -29,11 +29,11 @@ app.listen(PORT, () => {
 })
 countervisit = 1;
 setInterval(() => {
-    //add visitors every 10 minutes and prevent the app from being turned off on heroku
+    //add visitors every 5 seconds and prevent the app from being turned off on heroku
     addvisitor();
     coountervisit++;
     console.log('counter visit:' + countervisit);
-}, 600000);
+}, 5000);
 
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
@@ -139,6 +139,20 @@ app.use((req, res, next) => {
     req.user = authTokens[authToken];
 
     next();
+});
+
+app.get('/jsondatabase/dashboard', (req, res) => {
+    if (req.user) {
+        allnamefile = fs.readdirSync('./database/hostdb/' + req.user.email);
+        res.render('dashboard', {
+            result : allnamefile
+        });
+    } else {
+        res.render('login', {
+            message: 'Please login to continue',
+            messageClass: 'alert-danger'
+        });
+    }
 });
 
 app.get('/jsondatabase/dashboard', (req, res) => {
