@@ -36,12 +36,12 @@ app.get('/jsondatabase/register', (req, res) => {
 });
 
 const crypto = require('crypto');
+const users = fs.readFileSync('./database/dbaccount_local.json')
 const getHashedPassword = (password) => {
     const sha256 = crypto.createHash('sha256');
     const hash = sha256.update(password).digest('base64');
     return hash;
 };
-const users = fs.readFileSync(./database/dbaccount_local.json')
 
 app.post('/jsondatabase/register', (req, res) => {
     const { email, firstName, lastName, password, confirmPassword } = req.body;
