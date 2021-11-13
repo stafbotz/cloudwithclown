@@ -41,7 +41,7 @@ app.get('/addons/herokunosleep', function (req, res) {
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
 });
-app.get('/jsondatabase/register', (req, res) => {
+app.get('/jsondatabase/v1/register', (req, res) => {
     res.render('register');
 });
 
@@ -55,7 +55,7 @@ const getHashedPassword = (password) => {
     return hash;
 };
 
-app.post('/jsondatabase/register', (req, res) => {
+app.post('/jsondatabase/v1/register', (req, res) => {
     const { email, firstName, lastName, password, confirmPassword } = req.body;
 
     // Check if the password and confirm password fields match
@@ -96,7 +96,7 @@ app.post('/jsondatabase/register', (req, res) => {
     }
 });
 
-app.get('/jsondatabase/login', (req, res) => {
+app.get('/jsondatabase/v1/login', (req, res) => {
     res.render('login');
 });
 
@@ -107,7 +107,7 @@ const generateAuthToken = () => {
 // This will hold the users and authToken related to users
 const authTokens = {};
 
-app.post('/jsondatabase/login', (req, res) => {
+app.post('/jsondatabase/v1/login', (req, res) => {
     const { email, password } = req.body;
     const hashedPassword = getHashedPassword(password);
 
@@ -144,7 +144,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/jsondatabase/dashboard', (req, res) => {
+app.get('/jsondatabase/v1/dashboard', (req, res) => {
     if (req.user) {
         allnamefile = fs.readdirSync('./database/hostdb/' + req.user.email);
         res.render('dashboard', {
@@ -158,7 +158,7 @@ app.get('/jsondatabase/dashboard', (req, res) => {
     }
 });
 
-app.get('/jsondatabase/create', (req, res) => {
+app.get('/jsondatabase/v1/create', (req, res) => {
     if (req.user) {
         res.render('create');
     } else {
@@ -169,7 +169,7 @@ app.get('/jsondatabase/create', (req, res) => {
     }
 });
 
-app.post('/jsondatabase/create', (req, res) => {
+app.post('/jsondatabase/v1/create', (req, res) => {
     if (req.user) {
         const { nameFile, contentsFile } = req.body;
         const resultDir = './database/hostdb/' + req.user.email + '/' + nameFile
@@ -198,7 +198,7 @@ app.post('/jsondatabase/create', (req, res) => {
     }
 });
 
-app.get('/jsondatabase/logout', function(req, res) {
+app.get('/jsondatabase/v1/logout', function(req, res) {
     cookie = req.cookies;
     for (var prop in cookie) {
         if (!cookie.hasOwnProperty(prop)) {
