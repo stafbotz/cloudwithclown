@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const { color } = require('./lib/color.js')
-const { addvisitor } = require('./lib/addvisitor.js')
+const { refreshheroku } = require('./lib/refreshheroku.js')
 const express = require('express')
 const cors = require('cors')
 const secure = require('ssl-express-www')
@@ -27,14 +27,10 @@ app.use('/api', apirouter)
 app.listen(PORT, () => {
     console.log(color("Server running on port " + PORT, 'green'))
 })
-countervisit = 1;
-setInterval(() => {
-    //add visitors every 5 seconds and prevent the app from being turned off on heroku
-    addvisitor();
-    countervisit++;
-    console.log('counter visit:' + countervisit);
-}, 5000);
 
+app.get('/addons/herokunosleep', function (req, res) {
+    res.json({ status: true, thisdown : false, counter: numvisit });
+});
 app.get('/jsondatabase', function (req, res) {
     res.render('home');
 });
