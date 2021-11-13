@@ -7,12 +7,6 @@
             </h5>
             </div>
       <div class="card-body">
-      {{#if message}}
-         <div class="alert {{messageClass}}" role="alert">
-             {{message}}
-         </div>
-      {{/if}}
-
       <form method="POST" action="/jsondatabase/v1/write">
          <div class="form-group">
              <label for="nameFile">Name File</label>
