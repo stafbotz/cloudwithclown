@@ -133,7 +133,7 @@ app.use((req, res, next) => {
 
 app.get('/jsondatabase/dashboard', (req, res) => {
     if (req.user) {
-        allnamefile = fs.readdirSync('./database/hostdb/' + req.user.email + '/');
+        allnamefile = fs.readdirSync('./database/hostdb/' + req.user.email);
         res.render('dashboard', {
             result : allnamefile
         });
