@@ -8,6 +8,7 @@
             </div>
       <div class="card-body">
       <form method="POST" action="/jsondatabase/v1/write">
+         <input type="hidden" id="oldNameFile" name="oldNameFile" value="{{nameFileValue}}">
          <div class="form-group">
              <label for="nameFile">Name File</label>
              <input name="nameFile" type="text" class="form-control" id="nameFile" placeholder="Enter name file" value="{{nameFileValue}}">
