@@ -69,7 +69,10 @@ app.post('/jsondatabase/register', (req, res) => {
             email,
             password: hashedPassword
         });
-        fs.writeFileSync('./database/dbaccount_local.json', JSON.stringify(users))
+
+        addtodbaccount = fs.writeFileSync('./database/dbaccount_local.json', JSON.stringify(users))
+        if (addtodbaccount) console.log('registration complete')
+
         res.render('login', {
             message: 'Registration Complete. Please login to continue.',
             messageClass: 'alert-success'
