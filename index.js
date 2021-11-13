@@ -160,10 +160,7 @@ app.get('/jsondatabase/dashboard', (req, res) => {
 
 app.get('/jsondatabase/create', (req, res) => {
     if (req.user) {
-        allnamefile = fs.readdirSync('./database/hostdb/' + req.user.email);
-        res.render('dashboard', {
-            result : allnamefile
-        });
+        res.render('create');
     } else {
         res.render('login', {
             message: 'Please login to continue',
