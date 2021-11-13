@@ -173,13 +173,12 @@ app.post('/jsondatabase/create', (req, res) => {
     if (req.user) {
         const { nameFile, contentsFile } = req.body;
         if (!nameFile.includes('/')) {
-            fs.writeFileSync('./database/hostdb/' + req.user.email + '/' + nameFile, contentsFile, (err) => {
-                if (!err) throw res.redirect('/jsondatabase/dashboard');
-                req.json({ status : false });
+            fs.writeFileSync('./database/hostdb/' + req.user.email + '/' + nameFile, contentsFile);
+            res.redirect('/jsondatabase/dashboard');
             })
         } else {
             res.render('create', {
-            message: 'Character "/" is not allowed',
+            message: 'Character / is not allowed',
             messageClass: 'alert-danger'
          });
        }
