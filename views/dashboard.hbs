@@ -1,14 +1,15 @@
-<h1>Dashboard By Memecorp</h1>
+<h1 class="page-header text-center">Dashboard By Memecorp</h1>
     <hr>
     <div class="my-3">
-        <a class="btn btn-success" href="/jsondatabase/v1/create" role="button">Create New</a>
+        <a class="btn btn-success" href="/jsondatabase/v1/create" role="button">
+           <span class="glyphicon glyphicon-plus"></span> Create New
+        </a>
     </div>
     {{#if message}}
         <div class="alert {{messageClass}}" role="alert">
             {{message}}
         </div>
     {{/if}}  
-    <h1>Database</h1>
     <table class="table">
         <thead>
             <tr>
