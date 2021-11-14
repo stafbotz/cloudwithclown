@@ -6,6 +6,11 @@
               Write <span class="font-weight-bold text-primary">FILE</span>
             </h5>
             </div>
+      {{#if message}}
+         <div class="alert {{messageClass}}" role="alert">
+             {{message}}
+         </div>
+      {{/if}}
       <div class="card-body">
       <form method="POST" action="/jsondatabase/v1/write">
          <input type="hidden" id="oldNameFile" name="oldNameFile" value="{{nameFileValue}}">
