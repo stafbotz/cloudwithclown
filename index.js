@@ -257,7 +257,7 @@ app.post('/jsondatabase/v1/write', (req, res) => {
               fs.writeFileSync(newDir, contentsFile)
            }
         } else {
-            fs.writeFileSync(newDir, contentsFile)
+            fs.writeFileSync(oldDir, contentsFile)
       }         
     } else {
         res.render('login', {
