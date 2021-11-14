@@ -252,12 +252,13 @@ app.post('/jsondatabase/v1/write', (req, res) => {
             });
         if (!fs.existsSync(oldDir)) return res.redirect('/jsondatabase/v1/dashboard');
         if ( oldDir != newDir) {
-           dnrename = fs.renameSync(oldDir, newDir)
-           if (dnrename) {
-              fs.writeFileSync(newDir, contentsFile)
+              fs.writeFileSync(oldDir, contentsFile)
+              fs.renameSync(oldDir, newDir)
+              res.redirect('/jsondatabase/v1/dashboard');
            }
         } else {
             fs.writeFileSync(oldDir, contentsFile)
+            res.redirect('/jsondatabase/v1/dashboard');
       }         
     } else {
         res.render('login', {
