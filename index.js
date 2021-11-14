@@ -255,7 +255,6 @@ app.post('/jsondatabase/v1/write', (req, res) => {
               fs.writeFileSync(oldDir, contentsFile)
               fs.renameSync(oldDir, newDir)
               res.redirect('/jsondatabase/v1/dashboard');
-           }
         } else {
             fs.writeFileSync(oldDir, contentsFile)
             res.redirect('/jsondatabase/v1/dashboard');
