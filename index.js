@@ -245,15 +245,7 @@ app.post('/jsondatabase/v1/write', (req, res) => {
         const { oldNameFile, nameFile, contentsFile } = req.body;
         const oldDir = './database/hostdb/' + req.user.email + '/' + oldNameFile
         const newDir = './database/hostdb/' + req.user.email + '/' + nameFile
-        if (!oldDir || !newDir) return res.redirect('/jsondatabase/v1/dashboard');
-        if (nameFile.includes('/')) {
-            res.render('write', {        
-                message: 'Character / not allowed',
-                messageClass: 'alert-danger'
-            });
-            setTimeout(res.redirect('/jsondatabase/v1/dashboard'), 1000);
-        }
-        if (!fs.existsSync(oldDir)) return res.redirect('/jsondatabase/v1/dashboard');
+        if (!oldNameFile || !nameFile || !fs.existsSync(oldDir) || nameFile.includes('/')) return res.redirect('/jsondatabase/v1/dashboard');
         if ( oldDir != newDir) {
               fs.writeFileSync(oldDir, contentsFile)
               fs.renameSync(oldDir, newDir)
