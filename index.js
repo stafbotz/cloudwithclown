@@ -243,21 +243,22 @@ app.get('/jsondatabase/v1/write', (req, res) => {
 app.post('/jsondatabase/v1/write', (req, res) => {
     if (req.user) {
         const { oldNameFile, nameFile, contentsFile } = req.body;
-        const resultDir = './database/hostdb/' + req.user.email + '/' + oldNameFile
+        const oldDir = './database/hostdb/' + req.user.email + '/' + oldNameFile
+        const newDir = './database/hostdb/' + req.user.email + '/' + nameFile
 
-        if (!nameFile.includes('/')) {
-            if (fs.existsSync(resultDir)) {
-                fs.writeFileSync(resultDir, contentsFile);
-                res.redirect('/jsondatabase/v1/dashboard');
-            } else {
-                res.redirect('/jsondatabase/v1/dashboard');
-          }
-        } else {
-            res.render('write', {
+        if (nameFile.includes('/')) return res.render('write', {        
                 message: 'Character / not allowed',
                 messageClass: 'alert-danger'
             });
-       }
+        if (!fs.existsSync(oldDir)) return res.redirect('/jsondatabase/v1/dashboard');
+        if ( oldDir != newDir) {
+           dnrename = fs.renameSync(oldDir, newDir)
+           if (dnrename) {
+              fs.writeFileSync(newDir, contentsFile)
+           }
+        } else {
+            fs.writeFileSync(newDir, contentsFile)
+      }         
     } else {
         res.render('login', {
             message: 'Please login to continue',
