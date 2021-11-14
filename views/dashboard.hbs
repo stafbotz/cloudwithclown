@@ -1,3 +1,44 @@
+<h1>Dashboard By Memecorp</h1><hr>
+        <div class="my-3">
+            <a class="btn btn-success" href="/create" role="button">Create New</a>
+        </div>
+        {{#if message}}
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+        {{/if}}  
+        <h1>Database</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>File</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+               {{#if result}}
+                   {{#each result}}
+                        <tr>
+                            <td>{{this}}</td>
+                            <td>
+                                <a class="btn btn-primary" href="<?= base_url('edit/'.$row['id']) ?>" role="button">Edit</a>
+                                <a class="btn btn-danger" onclick="return confirm('Delete movie data? You will not be able to recover it.');" href="<?= base_url('delete/'.$row['id']) ?>" role="button">Delete</a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                {{else}}
+                    <div class="text-center">
+                       <div class="alert alert-danger" role="alert">
+                           <strong>No Data</strong>
+                       </div>
+                    </div>
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">DB Local JSON</a>
 </nav>
@@ -11,7 +52,7 @@
 	      </tr>
 	 </thead>
 	 <tbody>
-               {{#each result}}
+               
 	       <tr>
 		  <td>
                      {{this}}
@@ -33,7 +74,7 @@
                       </p>
                  </td>
       	       </tr>
-               {{/each}}
+               
 	 </tbody>
      </table>
 </div>
