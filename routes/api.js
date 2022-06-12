@@ -1,6 +1,6 @@
 __path = process.cwd()
 
-const 
+/*const 
   { 
     WAConnection,
     MessageType,
@@ -23,7 +23,7 @@ const client = new WAConnection()
 client.autoReconnect = ReconnectMode.onConnectionLost   
 client.loadAuthInfo ('./session.json')
 client.connect()
-fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
+fs.writeFileSync('./session.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))*/
     
 var creator = '@zeeone';
 var ytdl = require('ytdl-core');
@@ -2800,7 +2800,7 @@ router.get('/maker/special/epep', async (req, res, next) => {
 })
 })
 
-router.get('/sendmessage/whatsapp', async (req, res, next) => {
+/*router.get('/sendmessage/whatsapp', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             to = req.query.to,
             value = req.query.text;
@@ -2818,13 +2818,13 @@ router.get('/sendmessage/whatsapp', async (req, res, next) => {
         code: 200,
         message: 'berhasil mengirim chat'
     })
-})
+})*/
 
 router.get('/databasejson/docs', async (req, res, next) => {
         res.sendFile(__path + '/views/docs.html')
 })
 
-client.on('chat-update', async (mek) => {
+/*client.on('chat-update', async (mek) => {
    if (!mek.hasNewMessage) return
    mek = mek.messages.all()[0]
    if (!mek.message) return
@@ -2877,7 +2877,7 @@ client.on('chat-update', async (mek) => {
    switch(command) {
        
    }          
-})
+})*/
 
 
 module.exports = router
